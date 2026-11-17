@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-look="apple" data-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){var d=document.documentElement,q=new URLSearchParams(location.search).get('look'),s=null;
+try{if(q)sessionStorage.setItem('look',q);s=sessionStorage.getItem('look')}catch(e){}
+var ua=navigator.userAgent,ipad=navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1,look='android';
+if(/iPhone|iPad|iPod|Macintosh|Mac OS X/.test(ua)||ipad)look='apple';else if(/Windows/.test(ua))look='windows';
+if(s==='apple'||s==='android'||s==='windows')look=s;d.setAttribute('data-look',look);
+var W=function(k){var m=new RegExp('(?:^|;)'+k+'=([a-z]+)').exec(window.name||'');return m?m[1]:null};
+var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t=W('theme');
+if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-mode',t);
+var n=null;try{n=sessionStorage.getItem('nav');sessionStorage.removeItem('nav')}catch(e){}if(!n)n=W('nav');try{window.name=(window.name||'').replace(/(^|;)nav=[a-z]+/,'')}catch(e){}
+var vt=n==='next';if(vt){d.classList.add('vt-next');try{history.scrollRestoration='manual'}catch(e){}}
+var top=function(){if(vt)scrollTo(0,0)},done=function(){d.classList.remove('vt-next')};
+addEventListener('pageswap',function(ev){var v=ev.viewTransition;if(v){var z=function(){};v.ready.catch(z);v.finished.catch(z);v.updateCallbackDone&&v.updateCallbackDone.catch(z)}});addEventListener('pagereveal',function(ev){top();var v=ev.viewTransition;if(v){v.ready.catch(done);v.finished.then(done,done);v.updateCallbackDone&&v.updateCallbackDone.catch(done)}else done()});
+if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function(){top();setTimeout(done,900)})}})();</script>
+<title>One place for every number | Hareeshwar Channapragada</title>
+<meta name="description" content="Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.">
+<link rel="canonical" href="https://hareeshwar.com/stories/one-bi-platform.html">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hareeshwar Channapragada">
+<meta property="og:url" content="https://hareeshwar.com/stories/one-bi-platform.html">
+<meta property="og:title" content="One place for every number | Hareeshwar Channapragada">
+<meta property="og:description" content="Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.">
+<meta property="og:image" content="https://hareeshwar.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml" data-live>
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js" integrity="sha384-R18XzqnxvVLEF+BYfhpmDx30v7eP83fAckyfoRzK7/Uf6nGqufcmsk0eAKo7S3RU" crossorigin="anonymous"></script>
+<script defer src="/assets/site.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "One place for every number", "description": "Moving all of Hiver\u2019s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Hiver", "url": "https://hareeshwar.com/stories/one-bi-platform.html"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="gnav"><div class="wrap">
+<a class="brand" href="/" aria-label="Hareeshwar Channapragada, home"><img src="/assets/icon.svg" alt="" width="26" height="26">Hareeshwar</a>
+<nav aria-label="Main"><ul>
+<li><a href="/#stories">Stories</a></li>
+<li class="hide-s"><a href="/#writing">Writing</a></li>
+<li class="hide-s"><a href="/#path">Path</a></li>
+<li><button class="theme-btn" type="button" aria-label="Switch between light and dark" aria-pressed="false"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button></li>
+</ul></nav></div></header><nav class="lnav" aria-label="Story"><div class="wrap"><span class="lt">Hiver</span>
+<div class="rt"><span class="hide-s" style="color:var(--ink-2)">Senior Product Analyst · 2026</span><a class="pill" href="/stories/traces.html" data-next>Next story</a></div></div><span class="progress"></span></nav>
+<main id="main">
+<section class="s-hero"><div class="wrap">
+<h1 style="view-transition-name:t-one-bi-platform">One place for every number</h1>
+<p class="co">Hiver · 2026</p>
+<p class="lead dek">Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.</p>
+<div class="big" data-rise><b>&gt;90%</b><span>lower query cost</span></div>
+</div></section><section class="sec " aria-labelledby="c0"><div class="wrap"><div class="ch-head" data-rise><h2 id="c0">Every team had its own version</h2></div>
+<div class="scrolly"><div class="steps"><div class="step"><p>Reporting at Hiver lived in a few places: Looker, Superset, and dashboards that queried the data lake on AWS directly.</p></div><div class="step"><p>The decision was easy to say and slow to do. <strong>Metabase becomes the one source of truth</strong> for BI reporting, for the whole company.</p></div><div class="step"><p>And it happened. Every dashboard in Hiver moved. Superset and Looker logins were switched off after.</p></div></div><div class="viz"><div class="panel"><p class="p-title">Where a number could come from</p><ol class="vflow compact plain"><li class="retire3"><b>Looker</b><em>Off</em><span>Its own model of the data</span></li><li class="retire3"><b>Superset</b><em>Off</em><span>A second set of dashboards</span></li><li class="retire3"><b>Straight to Athena</b><em>Moved</em><span>Dashboards querying the data lake directly</span></li></ol><div class="vis-in at2" style="margin-top:26px"><ol class="vflow"><li class="on"><b>Metabase</b><span>One source of truth for BI reporting, for the whole company</span></li></ol></div></div></div></div></div></section><section class="sec alt" aria-labelledby="c1"><div class="wrap"><div class="ch-head" data-rise><h2 id="c1">Running both until the numbers matched</h2></div>
+<div class="scrolly flip"><div class="steps"><div class="step"><p>Nothing got switched off on day one. Every dashboard ran in Metabase right next to its old version.</p></div><div class="step"><p>The old dashboards pulled from different sources, so they didn’t agree with each other, let alone with the new ones. Reconciling them was most of the work, and honestly most of it was data engineering.</p></div><div class="step"><p>An old dashboard only went away once both sides showed the same number.</p></div></div><div class="viz"><div class="panel bi-recon" ><p class="p-title">Same metric, old dashboard against Metabase</p><div style="margin-top:22px"><div style="font-weight:600;font-size:15px">Active accounts</div>
+<div class="hbar" style="margin-top:8px"><span>Old</span><span class="tr"><i style="--w:62%;--c:var(--viz-2)"></i></span><b></b></div>
+<div class="hbar"><span>Metabase</span><span class="tr"><i style="--w:48%;--to:62%" class="mv"></i></span><b></b></div></div><div style="margin-top:22px"><div style="font-weight:600;font-size:15px">Usage by plan</div>
+<div class="hbar" style="margin-top:8px"><span>Old</span><span class="tr"><i style="--w:80%;--c:var(--viz-2)"></i></span><b></b></div>
+<div class="hbar"><span>Metabase</span><span class="tr"><i style="--w:71%;--to:80%" class="mv"></i></span><b></b></div></div><div style="margin-top:22px"><div style="font-weight:600;font-size:15px">ARR</div>
+<div class="hbar" style="margin-top:8px"><span>Old</span><span class="tr"><i style="--w:55%;--c:var(--viz-2)"></i></span><b></b></div>
+<div class="hbar"><span>Metabase</span><span class="tr"><i style="--w:61%;--to:55%" class="mv"></i></span><b></b></div></div><p class="vis-in at3" style="margin-top:18px;font-weight:600;color:var(--good)">Numbers match. The old dashboard can go.</p><p class="p-note">Bar lengths are illustrative.</p></div></div></div></div></section><section class="sec " aria-labelledby="c2"><div class="wrap"><div class="ch-text"><div data-rise><h2 id="c2" style="font-size:var(--h-2)">Paying for a question once a day</h2><div class="body" style="margin-top:22px"><p>The old dashboards hit the data lake through <strong>Amazon Athena</strong>, and Athena bills for the data each query scans: <strong>$5 per terabyte</strong> at AWS’s list price.</p><p>So every dashboard load, every filter change and every refresh was a fresh bill for the same data.</p><p>We moved the reporting tables into <strong>Postgres</strong> and refreshed them once a day. Athena now scans each table once a day, and after that people can query Postgres as much as they like without adding to the bill.</p><p>The math is simple. If a table is queried N times a day, its scan cost drops to 1/N. Anything queried 10 or more times a day saves at least 90%. Play with the slider.</p><p style="margin-top:1em;font-size:14px">Source: <a href="https://aws.amazon.com/athena/pricing/">Amazon Athena pricing</a></p></div></div>
+<div data-rise style="--d:1"><div class="panel" data-calc>
+<p class="p-title">How much of the scan cost goes away</p>
+<div class="calc" style="margin-top:18px">
+  <label for="qpd">A table is queried <output>20 times</output> a day</label>
+  <input id="qpd" type="range" min="1" max="200" value="20" aria-label="Times a table is queried per day">
+  <div class="res"><div><b data-scans>20 → 1</b><span>Athena scans a day</span></div><div><b data-saved>95%</b><span>less scan cost</span></div></div>
+</div>
+<p class="p-note">Athena bills for data scanned, at $5 per TB on AWS's list price. Postgres runs on a fixed instance, so extra queries there don't add to the bill.</p>
+</div></div></div></div></section><section class="sec alt" aria-labelledby="c3"><div class="wrap"><div class="ch-text flip"><div data-rise><h2 id="c3" style="font-size:var(--h-2)">What it looks like now</h2><div class="body" style="margin-top:22px"><p>Raw data sits in the S3 data lake. Glue and Athena read it once a day into Postgres, and Metabase reads from there.</p><p>Customer Success got their <strong>account health dashboard</strong> rebuilt on it, the one they use with clients. Leadership got the <strong>executive revenue dashboard</strong>: ARR, expansion and churn.</p><p>The tradeoff is freshness. Numbers are as fresh as the last refresh, once a day. For BI reporting, that’s the right call.</p></div></div>
+<div data-rise style="--d:1"><div class="panel" data-autostep="5" data-gap="700"><p class="p-title">Where the numbers live now</p><ol class="vflow"><li class="on1"><b>S3 data lake</b><span>Raw data from the product, billing and CRM</span></li><li class="on2"><b>Glue + Athena</b><em>Daily</em><span>Scanned once a day, billed per TB scanned</span></li><li class="on3"><b>Postgres</b><span>Reporting tables, refreshed every day</span></li><li class="on4"><b>Metabase</b><span>Every dashboard in the company</span></li><li class="on5"><b>Product, CS, leadership</b><span>Account health, executive revenue, adoption</span></li></ol></div></div></div></div></section><section class="sec tight"><div class="wrap"><a class="next" href="/stories/traces.html" data-next data-rise>
+<div><small>Up next · Hiver</small><h3 style="view-transition-name:t-traces">Ask the data in plain English</h3></div><span class="arrow" aria-hidden="true">→</span></a></div></section>
+</main><footer class="foot" id="contact">
+<div class="wrap">
+<div class="cta-block" data-rise>
+<h2>Want to talk shop?</h2>
+<p>Analytics, data trust, AI in the data stack, or anything on this site. I’m happy to compare notes.</p>
+<div class="ctas"><a class="btn" href="https://www.linkedin.com/in/hareeshwarc/">Say hi on LinkedIn</a><a class="btn ghost" href="https://hareeshwar98.medium.com/">Read my writing</a></div>
+</div>
+<div class="row"><span>© 2026 Hareeshwar Channapragada. Every figure is a real result. Charts marked illustrative show shape, not values.</span>
+<ul><li><a href="https://www.linkedin.com/in/hareeshwarc/">LinkedIn</a></li><li><a href="https://github.com/hareeshwarc">GitHub</a></li><li><a href="https://hareeshwar98.medium.com/">Medium</a></li></ul></div>
+</div></footer>
+</body></html>
