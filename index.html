@@ -1,614 +1,347 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hareeshwar Channapragada, Senior Product Analyst</title>
-<meta name="description" content="Hareeshwar Channapragada is a senior product analyst in Bengaluru. Four questions he answered with data, and how a question travels through his stack.">
-<link rel="canonical" href="https://hareeshwar.com/">
-<meta name="theme-color" content="#eceee9">
-<meta property="og:type" content="profile">
-<meta property="og:url" content="https://hareeshwar.com/">
-<meta property="og:title" content="Hareeshwar Channapragada, Senior Product Analyst">
-<meta property="og:description" content="The number behind the decision: four questions answered with data, and the stack they travelled through.">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b2fa1'/%3E%3Crect x='10' y='38' width='44' height='10' fill='%23c9d2ea'/%3E%3Crect x='46' y='38' width='8' height='10' fill='%23ffe15a'/%3E%3Crect x='10' y='18' width='30' height='10' fill='%23eceee9'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Public+Sans:wght@400..600&display=swap">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Hareeshwar Channapragada","jobTitle":"Senior Product Analyst","url":"https://hareeshwar.com/","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"sameAs":["https://www.linkedin.com/in/hareeshwarc/","https://github.com/hareeshwarc"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"Indian Institute of Science, Bangalore"},{"@type":"CollegeOrUniversity","name":"GITAM"}]}
-</script>
-<style>
-/* The data desk: one cobalt ink on cool paper, a highlighter for the single finding in each chart. */
-:root {
-  --bg: #eceee9;
-  --surface: #e1e4dd;
-  --panel: #f8f9f6;
-  --ink: #0b2fa1;
-  --ink-deep: #082479;
-  --muted: #3e56a6;
-  --tint: #c9d2ea;
-  --tint-2: #9eadd9;
-  --hl: #ffe15a;
-  --accent: #0b2fa1;
-  --accent-ink: #eceee9;
-
-  --f-display: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --f-text: "Public Sans", "Helvetica Neue", Arial, sans-serif;
-
-  --step-small: 0.9375rem;
-  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --step-lead: clamp(1.375rem, 1.15rem + 0.9vw, 2rem);
-  --step-head: clamp(2.5rem, 1.4rem + 4vw, 4.75rem);
-  --step-display: clamp(2.875rem, 0.8rem + 8.6vw, 9.25rem);
-
-  --margin: clamp(16px, 2.4vw, 32px);
-  --gap-section: clamp(104px, 13vw, 200px);
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --t-hover: 160ms;
-}
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 var(--step-body)/1.55 var(--f-text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-a { color: inherit; }
-h1, h2, h3 { margin: 0; font-family: var(--f-display); font-weight: 500; font-optical-sizing: auto; letter-spacing: -0.03em; line-height: 0.98; text-wrap: balance; }
-p { margin: 0; }
-mark { background: var(--hl); color: var(--ink); padding: 0 0.06em; }
-::selection { background: var(--hl); color: var(--ink); }
-:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-.on-ink :focus-visible { outline-color: var(--hl); }
-.skip { position: absolute; left: var(--margin); top: -100px; background: var(--panel); padding: 12px 16px; z-index: 20; }
-.skip:focus { top: 12px; }
-.wrap { padding-left: max(var(--margin), env(safe-area-inset-left, 0px)); padding-right: max(var(--margin), env(safe-area-inset-right, 0px)); }
-
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; background: var(--accent); color: var(--accent-ink); font: 500 var(--step-body)/1 var(--f-text); text-decoration: none; border: 0; cursor: pointer; transition: background-color var(--t-hover) ease, transform var(--t-hover) ease; }
-.btn:hover { background: var(--ink-deep); }
-.btn:active { transform: translateY(1px) scale(0.99); }
-.btn--paper { background: var(--bg); color: var(--ink); }
-.btn--paper:hover { background: var(--hl); }
-.link { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; transition: text-underline-offset var(--t-hover) ease; }
-.link:hover { text-underline-offset: 8px; }
-
-/* ---------- Top bar ---------- */
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
-.wordmark { font-weight: 600; text-decoration: none; letter-spacing: -0.01em; }
-.topbar nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
-.topbar nav a { text-decoration: none; }
-.topbar nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 5px; }
-.topbar .btn { min-height: 44px; padding: 0 18px; white-space: nowrap; }
-
-/* ---------- Hero ---------- */
-.hero { padding-bottom: clamp(56px, 7vw, 104px); }
-.hero h1 { font-size: var(--step-display); letter-spacing: -0.035em; line-height: 0.92; margin-top: clamp(32px, 6vw, 88px); }
-.hero__row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px 48px; margin-top: clamp(32px, 4vw, 56px); align-items: start; }
-.hero__ask { display: grid; gap: 28px; align-content: start; }
-.hero__ask p { font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem); line-height: 1.35; letter-spacing: -0.005em; max-width: 34ch; }
-.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
-
-/* The live question */
-[data-ui] { font-family: var(--f-text); color: var(--ink); letter-spacing: 0; }
-[data-ui].asked { background: var(--panel); padding: clamp(20px, 2.4vw, 32px); display: grid; gap: 20px; min-height: 360px; }
-[data-ui].asked .lab { font-size: 15px; font-weight: 600; display: flex; justify-content: space-between; gap: 12px; }
-[data-ui].asked .lab span:last-child { font-weight: 400; }
-[data-ui].asked .q { font: 500 clamp(24px, 2.4vw, 34px)/1.15 var(--f-display); letter-spacing: -0.02em; min-height: 2.3em; }
-[data-ui].asked .q::after { content: ""; display: inline-block; width: 2px; height: 0.9em; margin-left: 3px; vertical-align: -0.08em; background: var(--ink); animation: caret 1s steps(1) infinite; }
-@keyframes caret { 50% { opacity: 0; } }
-[data-ui].asked .a { display: grid; gap: 6px; padding: 18px 20px; background: var(--hl); transition: opacity 300ms ease, transform 400ms var(--ease-out); }
-[data-ui].asked .a.is-hidden { opacity: 0; transform: translateY(8px); }
-[data-ui].asked .fig { font: 500 clamp(44px, 5vw, 76px)/0.95 var(--f-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-[data-ui].asked .pager { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-[data-ui].asked .pager button { min-height: 40px; padding: 0 12px; background: var(--bg); color: var(--ink); border: 0; font: 500 14px/1 var(--f-text); cursor: pointer; transition: background-color var(--t-hover) ease; }
-[data-ui].asked .pager button:hover { background: var(--tint); }
-[data-ui].asked .pager button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-[data-ui].asked .pager a { margin-left: auto; font-size: 15px; font-weight: 500; }
-
-/* ---------- Section heads ---------- */
-.section { padding-top: var(--gap-section); }
-.head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 20px 48px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
-.head h2 { font-size: var(--step-head); }
-.head p { max-width: 46ch; }
-
-/* ---------- Stories: scrollytelling ---------- */
-.story + .story { margin-top: clamp(96px, 10vw, 160px); }
-.story__top { display: grid; gap: 12px; padding-bottom: 32px; }
-.story__top h3 { font-size: clamp(2rem, 1.2rem + 2.6vw, 3.5rem); letter-spacing: -0.03em; max-width: 22ch; }
-.story__meta { font-size: var(--step-small); font-weight: 600; }
-.scrolly { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; }
-.steps { display: grid; }
-.step { min-height: 52vh; padding: 24px 0; display: flex; align-items: flex-start; }
-.step:last-child { min-height: 40vh; }
-.step p { max-width: 34ch; font-size: clamp(1.25rem, 1.1rem + 0.45vw, 1.375rem); line-height: 1.4; color: #4d63b0; transition: color 300ms ease; }
-.step p mark { background: transparent; color: inherit; transition: background-color 300ms ease; }
-.step.is-on p { color: var(--ink); }
-.step.is-on p mark { background: var(--hl); }
-.stage { position: sticky; top: 10vh; }
-
-[data-ui].chart { background: var(--panel); padding: clamp(20px, 2.4vw, 36px); min-height: 440px; display: flex; flex-direction: column; gap: 24px; }
-[data-ui].chart .ttl { font-size: 15px; font-weight: 600; }
-[data-ui].chart .read { display: grid; gap: 4px; }
-[data-ui].chart .read b { font: 500 clamp(48px, 5.4vw, 88px)/0.95 var(--f-display); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-[data-ui].chart .read span { font-size: 16px; }
-[data-ui].chart .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
-[data-ui].chart .note { font-size: 14px; color: var(--muted); }
-
-/* Zoom rulers */
-[data-ui] .zrow { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 14px; align-items: center; font-size: 15px; font-variant-numeric: tabular-nums; opacity: 0.3; transition: opacity 400ms ease; }
-[data-ui] .zrow .tr { position: relative; height: 48px; background: var(--tint); }
-[data-ui] .zrow .tr i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); min-width: 3px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 900ms var(--ease-out); }
-[data-ui] .zrow .tr em { position: absolute; left: calc(var(--w) + 12px); top: 50%; transform: translateY(-50%); font-style: normal; font-weight: 600; background: var(--hl); padding: 2px 8px; opacity: 0; transition: opacity 300ms ease 600ms; }
-.is-s1 [data-ui] .zrow:nth-child(1), .is-s2 [data-ui] .zrow:nth-child(-n+2), .is-s3 [data-ui] .zrow { opacity: 1; }
-.is-s1 [data-ui] .zrow:nth-child(1) .tr i, .is-s2 [data-ui] .zrow:nth-child(-n+2) .tr i, .is-s3 [data-ui] .zrow .tr i { transform: none; }
-.is-s3 [data-ui] .zrow:nth-child(3) .tr em { opacity: 1; }
-
-/* Source bar */
-[data-ui] .src { display: flex; height: 96px; gap: 3px; }
-[data-ui] .src span { display: flex; align-items: flex-end; padding: 12px; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; transition: flex-basis 900ms var(--ease-out), padding 900ms var(--ease-out), background-color 300ms ease; }
-[data-ui] .src .unk { flex: 0 0 30%; background: var(--tint); }
-[data-ui] .src .known { flex: 1 1 0; background: var(--ink); color: var(--bg); }
-.is-s1 [data-ui] .src .unk, .is-s2 [data-ui] .src .unk { background: var(--hl); }
-.is-s3 [data-ui] .src .unk { flex-basis: 0%; padding: 0; }
-[data-ui] .scale { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
-[data-ui] .fixes { display: flex; flex-wrap: wrap; gap: 6px; }
-[data-ui] .fixes span { padding: 8px 12px; background: var(--bg); font-size: 15px; font-weight: 500; opacity: 0; transform: translateY(8px); transition: opacity 300ms ease, transform 400ms var(--ease-out); }
-[data-ui] .fixes span:nth-child(2) { transition-delay: 90ms; }
-[data-ui] .fixes span:nth-child(3) { transition-delay: 180ms; }
-.is-s2 [data-ui] .fixes span, .is-s3 [data-ui] .fixes span { opacity: 1; transform: none; }
-
-/* Dot field */
-[data-ui] .field { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); gap: 4px; }
-[data-ui] .field i { aspect-ratio: 1; border-radius: 50%; background: var(--tint); transition: background-color 400ms ease; transition-delay: calc(var(--k, 0) * 14ms); }
-.is-s2 [data-ui] .field i.act, .is-s3 [data-ui] .field i.act { background: var(--ink); }
-.is-s3 [data-ui] .field i:not(.act) { background: var(--surface); }
-
-/* Duplicates bar */
-[data-ui] .dup { position: relative; height: 96px; }
-[data-ui] .dup .base { position: absolute; left: 0; top: 0; bottom: 0; width: 95.69%; background: var(--ink); }
-[data-ui] .dup .extra { position: absolute; left: 95.69%; top: 0; bottom: 0; width: 4.31%; background: var(--ink); transition: background-color 300ms ease, transform 800ms var(--ease-out), opacity 600ms ease 300ms; }
-.is-s2 [data-ui] .dup .extra { background: var(--hl); }
-.is-s3 [data-ui] .dup .extra { background: var(--hl); transform: translate(18px, -40px) rotate(10deg); opacity: 0; }
-[data-ui] .dup .mark100 { position: absolute; left: 95.69%; top: -26px; bottom: -6px; width: 3px; background: var(--ink); }
-[data-ui] .dup .mark100 span { position: absolute; top: -2px; right: 8px; font-size: 14px; font-weight: 600; }
-
-/* ---------- More from the files ---------- */
-.files { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; list-style: none; margin: 0; padding: 0; }
-.files li { display: grid; grid-template-columns: 6em minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 18px 0; }
-.files b { font: 500 clamp(28px, 2.6vw, 40px)/1 var(--f-display); letter-spacing: -0.02em; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.files small { display: block; margin-top: 4px; font-size: var(--step-small); color: var(--muted); }
-
-/* ---------- Pitch ---------- */
-.pitch { background: var(--ink); color: var(--bg); margin-top: var(--gap-section); padding-block: clamp(88px, 10vw, 160px); }
-.pitch__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 64px; align-items: start; }
-.pitch h2 { grid-column: 1 / -1; max-width: 24ch; }
-.pitch__text { display: contents; }
-.pitch h2 { font-size: var(--step-head); }
-.pitch p { max-width: 40ch; }
-
-
-/* ---------- Stack journey ---------- */
-.journey { position: relative; }
-[data-ui].route { display: grid; gap: 20px; }
-[data-ui] .qcard { justify-self: start; width: calc(20% - 3px); background: var(--hl); padding: 14px 16px; font: 500 clamp(18px, 1.6vw, 24px)/1.2 var(--f-display); letter-spacing: -0.01em; transform: translateX(var(--qx, 0)); transition: transform 500ms var(--ease-out); }
-[data-ui] .wire { position: relative; height: 8px; background: var(--tint); }
-[data-ui] .wire i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--ink); transform: scaleX(var(--p, 0)); transform-origin: left; }
-[data-ui] .wire b { position: absolute; top: 50%; left: calc(var(--p, 0) * 100%); width: 24px; height: 24px; margin: -12px 0 0 -12px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 6px var(--hl); }
-[data-ui] .stops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; list-style: none; margin: 0; padding: 0; }
-[data-ui] .stops li { background: var(--panel); padding: 20px; min-height: 330px; display: flex; flex-direction: column; gap: 10px; transition: background-color 400ms ease, color 400ms ease; }
-[data-ui] .stops .verb { font: 500 clamp(28px, 2.6vw, 40px)/1 var(--f-display); letter-spacing: -0.02em; }
-[data-ui] .stops .tools { font-size: 15px; font-weight: 600; }
-[data-ui] .stops .what { font-size: 15px; line-height: 1.45; }
-[data-ui] .stops .art { margin-top: auto; padding: 12px; background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.45; transition: background-color 400ms ease; }
-[data-ui] .stops pre { margin: 0; white-space: pre-wrap; font: 400 13px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
-[data-ui] .stops .bars { display: flex; align-items: flex-end; gap: 4px; height: 56px; }
-[data-ui] .stops .bars i { flex: 1; height: var(--h); background: var(--tint-2); }
-[data-ui] .stops .bars i.top { background: var(--ink); }
-[data-ui] .stops li.is-on { background: var(--ink); color: var(--bg); }
-[data-ui] .stops li.is-on .art { background: var(--hl); }
-.journey__after { margin-top: 16px; font-size: var(--step-small); color: var(--muted); }
-
-/* ---------- Career layers ---------- */
-[data-ui].strata { display: grid; gap: 4px; }
-[data-ui].strata .layer { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 8px 40px; align-items: center; padding: clamp(18px, 2vw, 28px) clamp(18px, 2.4vw, 32px); background: var(--c); color: var(--t, var(--ink)); }
-[data-ui].strata .layer b { font: 500 clamp(24px, 2.4vw, 38px)/1.05 var(--f-display); letter-spacing: -0.02em; }
-[data-ui].strata .layer span { font-size: 16px; line-height: 1.45; }
-[data-ui].strata .layer span strong { display: block; font-weight: 600; }
-@media (prefers-reduced-motion: no-preference) {
-  .js [data-ui].strata .layer { opacity: 0.15; transform: translateY(-28px); transition: opacity 500ms ease, transform 700ms var(--ease-out); transition-delay: calc((5 - var(--k)) * 110ms); }
-  .js [data-ui].strata.is-in .layer { opacity: 1; transform: none; }
-}
-.strata__after { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 32px; }
-
-/* ---------- Contact + footer ---------- */
-.contact { background: var(--ink); color: var(--bg); margin-top: var(--gap-section); padding-block: clamp(88px, 10vw, 160px) 40px; }
-.contact__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px 64px; align-items: end; }
-.contact h2 { font-size: var(--step-head); }
-.contact__side { display: grid; gap: 24px; justify-items: start; }
-.contact__side ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; }
-.footer__name { margin-top: clamp(80px, 9vw, 140px); font: 500 min(var(--step-display), 22vw)/0.85 var(--f-display); letter-spacing: -0.045em; padding-bottom: 0.05em; }
-.imprint { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 28px; font-size: var(--step-small); color: var(--tint); }
-
-/* ---------- Entrances ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  .hero h1 { animation: rise 900ms var(--ease-out) both; }
-  .hero__ask { animation: rise 900ms var(--ease-out) 120ms both; }
-  .hero [data-ui].asked { animation: rise 900ms var(--ease-out) 240ms both; }
-  .js .rise { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); transition-delay: calc(var(--d, 0) * 80ms); }
-  .js .rise.is-in { opacity: 1; transform: none; }
-}
-@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-
-/* ---------- Tablet ---------- */
-@media (max-width: 1100px) {
-  .hero__row, .head, .pitch__grid, .contact__grid { grid-template-columns: 1fr; }
-  .hero__ask p { max-width: 34ch; }
-  .scrolly { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; }
-  .files { grid-template-columns: 1fr; }
-  [data-ui] .stops { grid-template-columns: 1fr; }
-  [data-ui] .stops li { min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 6px 24px; align-items: start; }
-  [data-ui] .stops .art { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
-  [data-ui] .wire { display: none; }
-  [data-ui] .qcard { width: auto; max-width: 32ch; transform: none; }
-}
-
-/* ---------- Phone ---------- */
-@media (max-width: 720px) {
-  .topbar nav li:not(:last-child) { display: none; }
-  .wm-long { display: none; }
-  .hero h1 { font-size: clamp(2.5rem, 11.4vw, 3.5rem); line-height: 0.95; margin-top: 28px; }
-  .hero__ask { gap: 20px; }
-  .hero__ask p { font-size: 1.25rem; }
-  .hero__actions .btn { width: 100%; }
-  [data-ui].asked { min-height: 0; padding: 18px; }
-  [data-ui].asked .pager a { margin-left: 0; width: 100%; padding-top: 6px; }
-  .story__top h3 { font-size: 2rem; }
-  .head h2, .pitch h2, .contact h2 { font-size: 2.125rem; }
-  .pitch__grid { grid-template-columns: 1fr; }
-  .scrolly { grid-template-columns: 1fr; gap: 0; }
-  .stage { top: 8px; z-index: 2; order: -1; padding-bottom: 8px; background: var(--bg); }
-  [data-ui].chart { min-height: 0; padding: 18px; gap: 14px; }
-  [data-ui].chart .read b { font-size: 44px; }
-  [data-ui] .src, [data-ui] .dup { height: 64px; }
-  [data-ui] .zrow { grid-template-columns: 6.5em minmax(0, 1fr); font-size: 14px; }
-  [data-ui] .zrow .tr { height: 36px; }
-  [data-ui] .field { gap: 3px; }
-  .step { min-height: 46vh; padding: 20px 0; }
-  .step:last-child { min-height: 24vh; }
-  .step p { font-size: 1.25rem; }
-  .files li { grid-template-columns: 4.6em minmax(0, 1fr); gap: 14px; padding: 14px 0; }
-  .files b { font-size: 26px; }
-  [data-ui] .stops li { grid-template-columns: 1fr; padding: 18px; }
-  [data-ui] .stops .art { grid-column: auto; grid-row: auto; margin-top: 8px; }
-  [data-ui].strata .layer { grid-template-columns: 1fr; }
-  .contact__side .btn { width: 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; }
-  [data-ui].asked .q::after { display: none; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Hareeshwar Channapragada, senior product analyst in Bengaluru. I find what's wrong with data, fix it, and help teams use it.">
+  <title>Hareeshwar Channapragada · Product Analyst</title>
+  <script>
+    /* Pick the platform before anything paints, so there is no flash of the wrong look.
+       Override for testing with ?look=ios | android | windows */
+    (function () {
+      var q = new URLSearchParams(location.search).get('look');
+      var ua = navigator.userAgent;
+      var iPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+      var look = 'android';
+      if (/iPhone|iPad|iPod|Macintosh|Mac OS X/.test(ua) || iPadOS) look = 'ios';
+      else if (/Windows/.test(ua)) look = 'windows';
+      else if (/Android/.test(ua)) look = 'android';
+      if (q === 'ios' || q === 'android' || q === 'windows') look = q;
+      window.__LOOK__ = look;
+      document.documentElement.classList.add('look-' + look);
+    })();
+  </script>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@9.3.0/framework7-bundle.min.css" integrity="sha384-uXNo4N9qJQsAsakeLzu1knQWIq/bxhuX/a1txyOJ+T7+XR25IJ9NaOveXTy4+iUa" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<a class="skip" href="#stories">Skip to the stories</a>
+<div id="app">
 
-<header class="hero wrap" id="top">
-  <div class="topbar">
-    <a class="wordmark" href="#top">Hareeshwar<span class="wm-long"> Channapragada</span></a>
-    <nav aria-label="Main">
-      <ul>
-        <li><a href="#stories">Stories</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#path">Path</a></li>
-        <li><a class="btn" href="https://www.linkedin.com/in/hareeshwarc/">Message me</a></li>
-      </ul>
-    </nav>
-  </div>
-  <h1>The number behind the decision.</h1>
-  <div class="hero__row">
-    <div class="hero__ask">
-      <p>I'm Hareeshwar, a senior product analyst in Bengaluru. I find what's wrong with the data, fix it, and sit in the room when it gets used.</p>
-      <div class="hero__actions">
-        <a class="btn" href="https://www.linkedin.com/in/hareeshwarc/">Message me on LinkedIn</a>
-        <a class="link" href="#stories">Read the four stories</a>
-      </div>
-    </div>
-    <div class="asked" data-ui id="asked" aria-live="polite">
-      <p class="lab"><span>A question I was asked</span><span id="asked-where">Hiver, 2026</span></p>
-      <p class="q" id="asked-q">Why has our revenue history stopped moving?</p>
-      <div class="a" id="asked-a">
-        <span class="fig" id="asked-fig">0.04%</span>
-        <span id="asked-line">15 months had frozen. Now it matches billing to within 0.04% a day.</span>
-      </div>
-      <div class="pager" role="group" aria-label="Pick a question">
-        <button type="button" data-i="0" aria-pressed="true">Revenue</button>
-        <button type="button" data-i="1" aria-pressed="false">Signups</button>
-        <button type="button" data-i="2" aria-pressed="false">Audience</button>
-        <button type="button" data-i="3" aria-pressed="false">Duplicates</button>
-        <a class="link" id="asked-go" href="#s-revenue">Read this story</a>
+  <!-- Desktop sidebar (Mac / Windows / tablets). Hidden on phones, where the tab bar takes over. -->
+  <div class="panel panel-left panel-cover panel-init sidebar" data-visible-breakpoint="1024">
+    <div class="page">
+      <div class="page-content">
+        <div class="sidebar-id">
+          <div class="avatar">HC</div>
+          <div>
+            <div class="sidebar-name">Hareeshwar</div>
+            <div class="sidebar-role">Senior Product Analyst</div>
+          </div>
+        </div>
+        <div class="list list-strong-ios list-dividers-ios inset-ios sidebar-nav">
+          <ul>
+            <li><a href="#" data-tab="#view-stories" class="item-link item-content side-link active">
+              <div class="item-media"><i class="icon ico ico-stories"></i></div>
+              <div class="item-inner"><div class="item-title">Stories</div></div></a></li>
+            <li><a href="#" data-tab="#view-work" class="item-link item-content side-link">
+              <div class="item-media"><i class="icon ico ico-work"></i></div>
+              <div class="item-inner"><div class="item-title">Work</div></div></a></li>
+            <li><a href="#" data-tab="#view-path" class="item-link item-content side-link">
+              <div class="item-media"><i class="icon ico ico-path"></i></div>
+              <div class="item-inner"><div class="item-title">Path</div></div></a></li>
+            <li><a href="#" data-tab="#view-contact" class="item-link item-content side-link">
+              <div class="item-media"><i class="icon ico ico-contact"></i></div>
+              <div class="item-inner"><div class="item-title">Contact</div></div></a></li>
+          </ul>
+        </div>
+        <div class="sidebar-foot">Open to senior or lead product analyst roles in B2B SaaS</div>
       </div>
     </div>
   </div>
-</header>
 
-<main>
-  <section class="wrap section" id="stories" aria-labelledby="stories-title" style="padding-top:clamp(64px, 7vw, 120px)">
-    <div class="head">
-      <h2 id="stories-title" class="rise">Four questions, four answers</h2>
-      <p class="rise" style="--d:1">Each one started with someone asking why a number looked wrong. Scroll through each to see what the data said and what changed.</p>
+  <div class="views tabs safe-areas">
+
+    <!-- Phone tab bar: iOS 26 glass on Apple, Material navigation bar on Android -->
+    <div class="toolbar toolbar-bottom tabbar tabbar-icons main-tabbar">
+      <div class="toolbar-inner">
+        <div class="toolbar-pane">
+          <a href="#view-stories" class="tab-link tab-link-active"><i class="icon ico ico-stories"></i><span class="tabbar-label">Stories</span></a>
+          <a href="#view-work" class="tab-link"><i class="icon ico ico-work"></i><span class="tabbar-label">Work</span></a>
+          <a href="#view-path" class="tab-link"><i class="icon ico ico-path"></i><span class="tabbar-label">Path</span></a>
+          <a href="#view-contact" class="tab-link"><i class="icon ico ico-contact"></i><span class="tabbar-label">Contact</span></a>
+        </div>
+      </div>
     </div>
 
-    <article class="story" id="s-revenue" aria-labelledby="s1-q">
-      <div class="story__top"><h3 id="s1-q">Why has our revenue history stopped moving?</h3><p class="story__meta">Asked at Hiver, 2026</p></div>
-      <div class="scrolly">
-        <div class="steps">
-          <div class="step" data-s="1"><p>A pipeline bug had silently frozen <mark>15 months</mark> of revenue history, for every customer. Nobody had noticed because the numbers still looked like numbers.</p></div>
-          <div class="step" data-s="2"><p>I defined the fix, then checked the result against billing one day at a time, until reported revenue and invoices agreed.</p></div>
-          <div class="step" data-s="3"><p>The daily gap is now <mark>0.04%</mark>. On an ordinary scale it doesn't show up. You have to zoom in twice to find it.</p></div>
-        </div>
-        <div class="stage">
-          <div class="chart" data-ui aria-label="Daily gap between reported revenue and billing: 0.04%, shown on a 10%, 1% and 0.1% scale">
-            <p class="ttl">Daily gap between reported revenue and billing, after the fix</p>
-            <div class="body">
-              <div class="zrow"><span>On a 10% scale</span><span class="tr" style="--w:0.4%"><i></i></span></div>
-              <div class="zrow"><span>On a 1% scale</span><span class="tr" style="--w:4%"><i></i></span></div>
-              <div class="zrow"><span>On a 0.1% scale</span><span class="tr" style="--w:40%"><i></i><em>0.04%</em></span></div>
+    <!-- ============ STORIES ============ -->
+    <div id="view-stories" class="view view-main view-init tab tab-active" data-name="stories" data-url="/">
+      <div class="page" data-name="stories">
+        <div class="navbar navbar-large navbar-transparent">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Hareeshwar</div>
+            <div class="right">
+              <a href="https://www.linkedin.com/in/hareeshwarc/" class="link external" target="_blank" rel="noopener">Message</a>
             </div>
-            <p class="note">Each bar is the same gap. Only the scale changes.</p>
+            <div class="title-large"><div class="title-large-text">Hareeshwar</div></div>
           </div>
         </div>
-      </div>
-    </article>
+        <div class="page-content">
+          <section class="hero">
+            <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="eyebrow reveal">Senior Product Analyst · Bengaluru</p>
+            <h1 class="hero-title reveal">I find what's wrong with data, fix it, and help people use it.</h1>
+            <p class="hero-sub reveal">I make non-data people feel like data people. Six years across retail analytics, developer platforms and B2B SaaS.</p>
+            <div class="hero-cta reveal">
+              <a href="https://www.linkedin.com/in/hareeshwarc/" class="button button-fill button-large button-round external" target="_blank" rel="noopener">Message me</a>
+              <a href="#" data-tab="#view-work" class="button button-tonal button-large button-round side-jump">See the work</a>
+            </div>
+          </section>
 
-    <article class="story" id="s-signups" aria-labelledby="s2-q">
-      <div class="story__top"><h3 id="s2-q">Where are our new users coming from?</h3><p class="story__meta">Asked at HackerRank, 2025</p></div>
-      <div class="scrolly">
-        <div class="steps">
-          <div class="step" data-s="1"><p>Leadership reporting showed acquisition trends, but <mark>30%</mark> of new users had no known source. A bug was hiding almost a third of the story.</p></div>
-          <div class="step" data-s="2"><p>I rebuilt how sources are classified: parsing UTM parameters, and mapping IP addresses to countries in a GDPR-compliant way.</p></div>
-          <div class="step" data-s="3"><p>Unknown-source users went from 30% to <mark>zero</mark>. Every new user now has a source leadership can act on.</p></div>
-        </div>
-        <div class="stage">
-          <div class="chart" data-ui aria-label="Share of new users with an unknown signup source: 30% before, 0% after">
-            <p class="ttl">New users by signup source</p>
-            <div class="read"><b>30%</b><span>with no known source</span></div>
-            <div class="body">
-              <div class="src" aria-hidden="true"><span class="unk">Unknown</span><span class="known">Known source</span></div>
-              <div class="scale" aria-hidden="true"><span>0%</span><span>100% of new users</span></div>
-              <div class="fixes"><span>UTM parsing</span><span>IP to country</span><span>GDPR-compliant</span></div>
+          <div class="block-title block-title-medium reveal">Featured</div>
+          <div class="featured reveal">
+            <div class="featured-tag">Hiver · 2026</div>
+            <div class="featured-body">
+              <div class="featured-copy">A pipeline bug had frozen 15 months of revenue history. After the fix, the daily gap between reported revenue and billing is</div>
+              <div class="featured-num"><span class="count" data-to="0.04" data-dec="2">0.00</span><small>%</small></div>
+            </div>
+            <div class="meter"><span style="--w: 99.96%"></span></div>
+          </div>
+
+          <div class="block-title block-title-medium reveal">Four questions</div>
+          <div class="block-header reveal">Tap a card to open the story.</div>
+
+          <div class="cards-grid">
+            <div class="card card-expandable card-raised q-card reveal" data-hue="a">
+              <div class="card-content">
+                <div class="q-cover">
+                  <div class="q-meta">Hiver · 2026</div>
+                  <div class="q-title">Why has revenue history stopped moving?</div>
+                  <div class="q-stat"><span class="count" data-to="0.04" data-dec="2">0.00</span>% daily gap after the fix</div>
+                  <a href="#" class="link card-close card-opened-fade-in q-close" aria-label="Close"><i class="icon ico ico-close"></i></a>
+                </div>
+                <div class="card-content-padding q-detail">
+                  <p class="q-lede">Revenue history had been frozen for 15 months because of a bug in the pipeline that fed it.</p>
+                  <div class="q-kv"><span>What I did</span><p>Traced the freeze to the pipeline bug and fixed it so history updates again.</p></div>
+                  <div class="q-kv"><span>Result</span><p>The daily gap between reported revenue and billing is now 0.04%.</p></div>
+                  <a href="#" class="button button-tonal button-round card-close">Close</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-expandable card-raised q-card reveal" data-hue="b">
+              <div class="card-content">
+                <div class="q-cover">
+                  <div class="q-meta">HackerRank · 2025</div>
+                  <div class="q-title">Where are new users coming from?</div>
+                  <div class="q-stat">Unknown-source signups: 30% → <span class="count" data-to="0" data-from="30">30</span>%</div>
+                  <a href="#" class="link card-close card-opened-fade-in q-close" aria-label="Close"><i class="icon ico ico-close"></i></a>
+                </div>
+                <div class="card-content-padding q-detail">
+                  <p class="q-lede">Close to a third of signups had no known source, so growth decisions were partly guesswork.</p>
+                  <div class="q-kv"><span>What I did</span><p>Built UTM parsing and GDPR-compliant IP-to-country mapping.</p></div>
+                  <div class="q-kv"><span>Result</span><p>Unknown-source signups went from 30% to zero.</p></div>
+                  <a href="#" class="button button-tonal button-round card-close">Close</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-expandable card-raised q-card reveal" data-hue="c">
+              <div class="card-content">
+                <div class="q-cover">
+                  <div class="q-meta">HackerRank · 2025</div>
+                  <div class="q-title">How big is the audience, really?</div>
+                  <div class="q-stat"><span class="count" data-to="3.5" data-dec="1">0</span>M active of 27.4M registered</div>
+                  <a href="#" class="link card-close card-opened-fade-in q-close" aria-label="Close"><i class="icon ico ico-close"></i></a>
+                </div>
+                <div class="card-content-padding q-detail">
+                  <p class="q-lede">The headline number was 27.4M registered developers. The question was how many actually show up.</p>
+                  <div class="q-kv"><span>Result</span><p>3.5M active, about one in eight. This fed H1 2026 planning.</p></div>
+                  <div class="ratio" aria-label="About one in eight registered developers are active">
+                    <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                  <a href="#" class="button button-tonal button-round card-close">Close</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-expandable card-raised q-card reveal" data-hue="d">
+              <div class="card-content">
+                <div class="q-cover">
+                  <div class="q-meta">Hiver · 2026</div>
+                  <div class="q-title">Is reported revenue too high?</div>
+                  <div class="q-stat"><span class="count" data-to="4.5" data-dec="1">0</span>% inflation, removed at source</div>
+                  <a href="#" class="link card-close card-opened-fade-in q-close" aria-label="Close"><i class="icon ico ico-close"></i></a>
+                </div>
+                <div class="card-content-padding q-detail">
+                  <p class="q-lede">Duplicate records were quietly inflating reported revenue.</p>
+                  <div class="q-kv"><span>Result</span><p>The duplicates inflated revenue by 4.5%. They were removed at the source, not patched in a dashboard.</p></div>
+                  <a href="#" class="button button-tonal button-round card-close">Close</a>
+                </div>
+              </div>
             </div>
           </div>
+
+
+          <div class="block-title block-title-medium reveal">Writing</div>
+          <div class="block-header reveal">On Medium.</div>
+          <div class="list media-list inset list-strong-ios list-dividers-ios writing-list reveal">
+            <ul>
+              <li><a href="https://hareeshwar98.medium.com/hiring-a-product-analyst-wont-fix-broken-data-bbf3a955bca7" class="item-link item-content external" target="_blank" rel="noopener">
+                <div class="item-media"><span class="dot dot-new">New</span></div>
+                <div class="item-inner"><div class="item-title-row"><div class="item-title">Hiring a product analyst won't fix broken data</div></div>
+                <div class="item-subtitle">Nov 2026</div>
+                <div class="item-text">Why product analyst roles drift into data engineering at companies with low data maturity.</div></div></a></li>
+              <li><a href="https://hareeshwar98.medium.com/stop-scaling-with-ram-how-i-re-architected-a-b2b-pricing-engine-for-efficiency-edd90a5f4581" class="item-link item-content external" target="_blank" rel="noopener">
+                <div class="item-media"><span class="dot">RAM</span></div>
+                <div class="item-inner"><div class="item-title-row"><div class="item-title">The most expensive part of our pricing engine was a product decision</div></div>
+                <div class="item-subtitle">Mar 2026</div>
+                <div class="item-text">How a B2B pricing engine stopped scaling with RAM.</div></div></a></li>
+            </ul>
+          </div>
+
+          <p class="fine reveal">Every figure here is a real result. No revenue amounts or source breakdowns are shown.</p>
         </div>
       </div>
-    </article>
+    </div>
 
-    <article class="story" id="s-audience" aria-labelledby="s3-q">
-      <div class="story__top"><h3 id="s3-q">How big is our audience, really?</h3><p class="story__meta">Asked at HackerRank, 2025</p></div>
-      <div class="scrolly">
-        <div class="steps">
-          <div class="step" data-s="1"><p>The number everyone quoted was <mark>27.4M</mark> registered developers. Each dot here is 100,000 of them.</p></div>
-          <div class="step" data-s="2"><p>The useful number was the people still showing up: <mark>3.5M</mark> active developers, about one in eight.</p></div>
-          <div class="step" data-s="3"><p>Cut by region and segment, that engagement and retention picture went into H1 2026 planning and positioning.</p></div>
+    <!-- ============ WORK ============ -->
+    <div id="view-work" class="view view-init tab" data-name="work" data-url="/work/">
+      <div class="page" data-name="work">
+        <div class="navbar navbar-large navbar-transparent">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">More from the files</div>
+            <div class="title-large"><div class="title-large-text">More from the files</div></div>
+          </div>
         </div>
-        <div class="stage">
-          <div class="chart" data-ui aria-label="27.4 million registered developers, of whom 3.5 million are active">
-            <p class="ttl">Registered developers, one dot per 100,000</p>
-            <div class="read"><b>27.4M</b><span>registered</span></div>
-            <div class="body"><div class="field" id="field" aria-hidden="true"></div></div>
+        <div class="page-content">
+          <div class="segmented segmented-strong work-filter reveal">
+            <button class="button button-active" data-f="all">All</button>
+            <button class="button" data-f="Hiver">Hiver</button>
+            <button class="button" data-f="HackerRank">HackerRank</button>
+            <button class="button" data-f="Earlier">Earlier</button>
+            <span class="segmented-highlight"></span>
+          </div>
+
+          <div class="list media-list list-strong-ios list-dividers-ios inset work-list">
+            <ul>
+              <li data-co="HackerRank"><div class="item-content"><div class="item-media"><span class="dot">5h</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Weekly business review, automated</div></div><div class="item-subtitle">HackerRank · 2025</div><div class="item-text">Saves 5 hours every week.</div></div></div></li>
+              <li data-co="HackerRank"><div class="item-content"><div class="item-media"><span class="dot">12w</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Cohort retention model</div></div><div class="item-subtitle">HackerRank · 2025</div><div class="item-text">Across four actions, 12 weeks deep.</div></div></div></li>
+              <li data-co="Hiver"><div class="item-content"><div class="item-media"><span class="dot">163</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">One catalog for the warehouse</div></div><div class="item-subtitle">Hiver · 2026</div><div class="item-text">163 tables documented, built to also serve AI assistants.</div></div></div></li>
+              <li data-co="Earlier"><div class="item-content"><div class="item-media"><span class="dot">7</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Multi-level price optimization</div></div><div class="item-subtitle">Impact Analytics · 2023</div><div class="item-text">For 7 enterprise retail clients, about three minutes a run.</div></div></div></li>
+              <li data-co="Earlier"><div class="item-content"><div class="item-media"><span class="dot">25%</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Less compute, same output</div></div><div class="item-subtitle">Impact Analytics · 2022</div><div class="item-text">25% less compute time by right-sizing high-memory instances.</div></div></div></li>
+              <li data-co="HackerRank"><div class="item-content"><div class="item-media"><span class="dot">3</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Evaluating a text-to-SQL agent</div></div><div class="item-subtitle">HackerRank · 2025</div><div class="item-text">A three-part framework: scores, alignment, correctness and interpretability.</div></div></div></li>
+              <li data-co="Hiver"><div class="item-content"><div class="item-media"><span class="dot">2</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Two product lines in Amplitude</div></div><div class="item-subtitle">Hiver · 2026</div><div class="item-text">Both run in Amplitude, owned end to end.</div></div></div></li>
+              <li data-co="Hiver"><div class="item-content"><div class="item-media"><span class="dot">BI</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">BI reporting moved to Metabase</div></div><div class="item-subtitle">Hiver · 2026</div><div class="item-text">Run alongside the old dashboards until the numbers matched.</div></div></div></li>
+              <li data-co="Earlier"><a href="https://hareeshwar98.medium.com/stop-scaling-with-ram-how-i-re-architected-a-b2b-pricing-engine-for-efficiency-edd90a5f4581" class="item-link item-content external" target="_blank" rel="noopener"><div class="item-media"><span class="dot">RAM</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">A pricing engine that stopped scaling with RAM</div></div><div class="item-subtitle">Impact Analytics · 2024</div><div class="item-text">Re-architected a B2B pricing engine. Read the write-up on Medium.</div></div></a></li>
+              <li data-co="Earlier"><div class="item-content"><div class="item-media"><span class="dot">★</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">Claims fraud data and a Spot Award</div></div><div class="item-subtitle">Mu Sigma · 2021</div><div class="item-text">New data sources for an insurer's fraud model, and a Spot Award for a regulatory ETL.</div></div></div></li>
+            </ul>
           </div>
         </div>
       </div>
-    </article>
+    </div>
 
-    <article class="story" id="s-dupes" aria-labelledby="s4-q">
-      <div class="story__top"><h3 id="s4-q">Is reported revenue too high?</h3><p class="story__meta">Asked at Hiver, 2026</p></div>
-      <div class="scrolly">
-        <div class="steps">
-          <div class="step" data-s="1"><p>Reported revenue looked healthy. Too healthy, once you set it against the true figure, here fixed at 100.</p></div>
-          <div class="step" data-s="2"><p>Duplicate records were inflating it by <mark>4.5%</mark>. Small enough to pass a glance, large enough to change a forecast.</p></div>
-          <div class="step" data-s="3"><p>I removed them at the source, so every dashboard built on top now starts from the true number.</p></div>
+    <!-- ============ PATH ============ -->
+    <div id="view-path" class="view view-init tab" data-name="path" data-url="/path/">
+      <div class="page" data-name="path">
+        <div class="navbar navbar-large navbar-transparent">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Path</div>
+            <div class="title-large"><div class="title-large-text">Path</div></div>
+          </div>
         </div>
-        <div class="stage">
-          <div class="chart" data-ui aria-label="Reported revenue at 104.5 against a true figure of 100; the 4.5 points were duplicates">
-            <p class="ttl">Reported revenue, with true revenue set to 100</p>
-            <div class="read"><b>104.5</b><span>reported</span></div>
-            <div class="body" style="padding-top:32px">
-              <div class="dup" aria-hidden="true"><span class="base"></span><span class="extra"></span><span class="mark100"><span>100</span></span></div>
-              <div class="scale" aria-hidden="true"><span>0</span><span>104.5</span></div>
-            </div>
+        <div class="page-content">
+          <div class="block-title block-title-medium reveal">How one question moves through the stack</div>
+          <div class="block-header reveal">Which action best predicts week-4 retention?</div>
+          <div class="flow reveal">
+            <div class="flow-rail"><span class="flow-pulse"></span></div>
+            <div class="flow-step"><b>Track</b><span>Amplitude events</span></div>
+            <div class="flow-step"><b>Store</b><span>Redshift · Trino</span></div>
+            <div class="flow-step"><b>Model</b><span>SQL · Python · FastAPI</span></div>
+            <div class="flow-step"><b>Show</b><span>Metabase · Superset</span></div>
+            <div class="flow-step"><b>Decide</b><span>With the PM, in the room</span></div>
+          </div>
+
+          <div class="block-title block-title-medium reveal">Career</div>
+          <div class="timeline-list reveal">
+            <div class="tl"><i></i><div><b>Hiver</b><span>Senior product analyst, the full path</span></div></div>
+            <div class="tl"><i></i><div><b>HackerRank</b><span>Product analyst, Community</span></div></div>
+            <div class="tl"><i></i><div><b>Impact Analytics</b><span>Analyst, then engineer</span></div></div>
+            <div class="tl"><i></i><div><b>IISc Bangalore</b><span>PG level computational data science, 93%</span></div></div>
+            <div class="tl"><i></i><div><b>Mu Sigma</b><span>Data scientist</span></div></div>
+            <div class="tl"><i></i><div><b>GITAM</b><span>B.Tech, computer science</span></div></div>
+          </div>
+          <div class="list inset list-strong-ios reveal">
+            <ul>
+              <li><a href="/stack/" class="item-link item-content"><div class="item-inner"><div class="item-title">The toolkit</div><div class="item-after">Open</div></div></a></li>
+              <li><a href="https://www.linkedin.com/in/hareeshwarc/details/experience/" class="item-link item-content external" target="_blank" rel="noopener"><div class="item-inner"><div class="item-title">Full history on LinkedIn</div></div></a></li>
+            </ul>
           </div>
         </div>
       </div>
-    </article>
-  </section>
-
-  <section class="wrap section" id="files" aria-labelledby="files-title">
-    <div class="head">
-      <h2 id="files-title" class="rise">More from the files</h2>
-      <p class="rise" style="--d:1">Smaller stories from six years of the same habit: find the number that's off, then build the thing that keeps it right.</p>
     </div>
-    <ul class="files">
-      <li class="rise"><b>5 hrs</b><span>Saved every week by automating the weekly business review, from Redshift to Metabase.<small>HackerRank, 2025</small></span></li>
-      <li class="rise"><b>12 wk</b><span>Cohort retention model across four actions, built to find what best predicts week-4 retention.<small>HackerRank, 2025</small></span></li>
-      <li class="rise"><b>163</b><span>Warehouse tables documented in one catalog, written to double as context for AI assistants.<small>Hiver, 2026</small></span></li>
-      <li class="rise"><b>7</b><span>Enterprise retail clients on a pricing tool I brought multi-level optimization into, at about three minutes a run.<small>Impact Analytics, 2023</small></span></li>
-      <li class="rise"><b>25%</b><span>Less compute time, by starting, stopping and right-sizing high-memory instances to fit the task.<small>Impact Analytics, 2022</small></span></li>
-      <li class="rise"><b>3</b><span>Scores, alignment, correctness and interpretability, in an evaluation framework for a text-to-SQL agent.<small>HackerRank, 2025</small></span></li>
-      <li class="rise"><b>2</b><span>Product lines run in Amplitude, from event taxonomy to who gets access.<small>Hiver, 2026</small></span></li>
-      <li class="rise"><b>1</b><span>BI platform. Reporting moved to Metabase, run side by side with the old dashboards until the numbers matched.<small>Hiver, 2026</small></span></li>
-      <li class="rise"><b>RAM</b><span>A B2B pricing engine re-architected so it stopped scaling with memory. <a class="link" href="https://hareeshwar98.medium.com/stop-scaling-with-ram-how-i-re-architected-a-b2b-pricing-engine-for-efficiency-edd90a5f4581">I wrote up how</a>.<small>Impact Analytics, 2024</small></span></li>
-      <li class="rise"><b>2</b><span>New data sources surfaced for an insurer's claims fraud model, and a Spot Award for a regulatory ETL.<small>Mu Sigma, 2021</small></span></li>
-    </ul>
-  </section>
 
-  <section class="pitch on-ink" aria-labelledby="pitch-title">
-    <div class="wrap pitch__grid">
-      <h2 id="pitch-title" class="rise">I make non-data people feel like data people.</h2>
-      <div class="pitch__text">
-        <p class="rise" style="--d:1">The best part of the job is when a stakeholder asks a question, the data gives an answer that surprises them, and then we do something with it.</p>
-        <p class="rise" style="--d:2">I design the tracking plan, build the pipeline and the model, then sit with a PM to work out what to do next. I'm looking for a senior or lead product analyst role in B2B SaaS where that whole path is the job.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section" id="stack" aria-labelledby="stack-title">
-    <div class="head">
-      <h2 id="stack-title" class="rise">How a question travels through my stack</h2>
-      <p class="rise" style="--d:1">One real question from HackerRank, followed from the first event to the meeting where it got answered. Scroll to move it along.</p>
-    </div>
-    <div class="journey" id="journey">
-      <div class="journey__stage">
-        <div class="route" data-ui id="route">
-          <p class="qcard">Which action best predicts week-4 retention?</p>
-          <div class="wire" aria-hidden="true"><i></i><b></b></div>
-          <ol class="stops">
-            <li><span class="verb">Track</span><span class="tools">Amplitude</span><span class="what">Every Prep Kit action is logged with the plan, region and channel it came from.</span><div class="art"><pre><code>submission
-mock test
-interview
-certification</code></pre></div></li>
-            <li><span class="verb">Store</span><span class="tools">Redshift, Trino</span><span class="what">Events land in the warehouse next to accounts and plans, in staging tables built for the question.</span><div class="art">Weekly cohorts by signup week, 12 weeks deep</div></li>
-            <li><span class="verb">Model</span><span class="tools">SQL, Python, FastAPI</span><span class="what">A cohort retention model compares the four actions against who is still here in week 4.</span><div class="art"><pre><code>retained_w4
-  by action
-  by plan, region, channel</code></pre></div></li>
-            <li><span class="verb">Show</span><span class="tools">Metabase, Superset</span><span class="what">The answer goes on a dashboard Product and GTM can open without asking me.</span><div class="art"><div class="bars" aria-hidden="true"><i style="--h:42%"></i><i class="top" style="--h:92%"></i><i style="--h:55%"></i><i style="--h:30%"></i></div></div></li>
-            <li><span class="verb">Decide</span><span class="tools">The meeting</span><span class="what">I sit with the PM and we work out what the number means for what we build next.</span><div class="art">The one action to push, with the number on screen</div></li>
-          </ol>
+    <!-- ============ CONTACT ============ -->
+    <div id="view-contact" class="view view-init tab" data-name="contact" data-url="/contact/">
+      <div class="page" data-name="contact">
+        <div class="navbar navbar-large navbar-transparent">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Contact</div>
+            <div class="title-large"><div class="title-large-text">Contact</div></div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="contact-hero reveal">
+            <div class="avatar avatar-xl">HC</div>
+            <h2>Looking for senior or lead product analyst roles in B2B SaaS.</h2>
+            <p>Bengaluru. On-site, hybrid or remote.</p>
+          </div>
+          <div class="list inset list-strong-ios list-dividers-ios contact-links reveal">
+            <ul>
+              <li><a href="https://www.linkedin.com/in/hareeshwarc/" class="item-link item-content external" target="_blank" rel="noopener"><div class="item-media"><i class="icon ico ico-linkedin"></i></div><div class="item-inner"><div class="item-title">LinkedIn</div><div class="item-after">hareeshwarc</div></div></a></li>
+              <li><a href="https://github.com/hareeshwarc" class="item-link item-content external" target="_blank" rel="noopener"><div class="item-media"><i class="icon ico ico-github"></i></div><div class="item-inner"><div class="item-title">GitHub</div><div class="item-after">hareeshwarc</div></div></a></li>
+              <li><a href="https://hareeshwar98.medium.com/" class="item-link item-content external" target="_blank" rel="noopener"><div class="item-media"><i class="icon ico ico-pen"></i></div><div class="item-inner"><div class="item-title">Writing</div><div class="item-after">2 articles</div></div></a></li>
+            </ul>
+          </div>
+          <p class="fine reveal">Built with Framework7. Looks like iOS on Apple devices, Material on Android and Fluent on Windows.</p>
         </div>
       </div>
     </div>
-    <p class="journey__after">The dashboard bars are a sketch of the view, not the result.</p>
-  </section>
 
-  <section class="wrap section" id="path" aria-labelledby="path-title">
-    <div class="head">
-      <h2 id="path-title" class="rise">What each place added</h2>
-      <p class="rise" style="--d:1">Six years, built from the ground up: computer science, data science, engineering, product analytics and now the whole path, end to end.</p>
-    </div>
-    <div class="strata" data-ui id="strata">
-      <div class="layer" style="--k:5; --c:var(--ink); --t:var(--bg)"><b>The whole path, end to end</b><span><strong>Hiver, senior product analyst</strong>Product analytics across both products, from how usage is tracked to the dashboards leadership uses.</span></div>
-      <div class="layer" style="--k:4; --c:#2a49b0; --t:var(--bg)"><b>Product analytics</b><span><strong>HackerRank, product analyst</strong>The weekly business review, retention models and an AI evaluation, for 27.4M developers.</span></div>
-      <div class="layer" style="--k:3; --c:#4e67bc; --t:var(--bg)"><b>Engineering</b><span><strong>Impact Analytics, analyst then engineer</strong>Multi-level price optimization for seven enterprise clients, and its FastAPI backend.</span></div>
-      <div class="layer" style="--k:2; --c:var(--tint-2)"><b>Computational data science</b><span><strong>IISc Bangalore</strong>A PG level advanced certification, finished at 93% while working full time.</span></div>
-      <div class="layer" style="--k:1; --c:var(--tint)"><b>Data science</b><span><strong>Mu Sigma, data scientist</strong>Fraud detection for an insurer, and a regulatory ETL that earned a Spot Award.</span></div>
-      <div class="layer" style="--k:0; --c:var(--surface)"><b>Computer science</b><span><strong>GITAM, B.Tech</strong>The foundation, and the start of learning on HackerRank, years before working there.</span></div>
-    </div>
-    <p class="strata__after"><span>Every layer is still in use in the one above it.</span><a class="link" href="https://www.linkedin.com/in/hareeshwarc/details/experience/">Full history on LinkedIn</a></p>
-  </section>
-</main>
-
-<footer class="contact on-ink" id="contact" aria-labelledby="contact-title">
-  <div class="wrap">
-    <div class="contact__grid">
-      <h2 id="contact-title">Have a question your data can't answer yet?</h2>
-      <div class="contact__side">
-        <p>Senior or lead product analyst roles in B2B SaaS. Bengaluru, on-site, hybrid or remote.</p>
-        <a class="btn btn--paper" href="https://www.linkedin.com/in/hareeshwarc/">Message me on LinkedIn</a>
-        <ul>
-          <li><a class="link" href="https://www.linkedin.com/in/hareeshwarc/">LinkedIn</a></li>
-          <li><a class="link" href="https://github.com/hareeshwarc">GitHub</a></li>
-          <li><a class="link" href="https://hareeshwar98.medium.com/stop-scaling-with-ram-how-i-re-architected-a-b2b-pricing-engine-for-efficiency-edd90a5f4581">Writing</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="footer__name" aria-hidden="true">Hareeshwar</p>
-    <p class="imprint"><span>© 2026 Hareeshwar Channapragada</span><span>Every figure here is a real result. No revenue amounts or source breakdowns are shown.</span></p>
   </div>
-</footer>
+</div>
 
-<script>
-document.documentElement.classList.add('js');
-(() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const $ = (id) => document.getElementById(id);
+<!-- Pushed page: shows the native push transition on each platform -->
+<template id="tpl-stack">
+  <div class="page" data-name="stack">
+    <div class="navbar">
+      <div class="navbar-bg"></div>
+      <div class="navbar-inner sliding">
+        <div class="left"><a href="#" class="link back"><i class="icon icon-back"></i><span class="if-not-md">Path</span></a></div>
+        <div class="title">The toolkit</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">Analytics</div>
+      <div class="chips-wrap"><span class="chip"><span class="chip-label">Amplitude</span></span><span class="chip"><span class="chip-label">Metabase</span></span><span class="chip"><span class="chip-label">Superset</span></span></div>
+      <div class="block-title">Data</div>
+      <div class="chips-wrap"><span class="chip"><span class="chip-label">SQL</span></span><span class="chip"><span class="chip-label">Redshift</span></span><span class="chip"><span class="chip-label">Trino</span></span><span class="chip"><span class="chip-label">Python</span></span><span class="chip"><span class="chip-label">FastAPI</span></span></div>
+      <div class="block block-strong inset">
+        <p>The tools change. The job does not: get the numbers right, then get them in front of the person making the call.</p>
+      </div>
+    </div>
+  </div>
+</template>
 
-  // ---------- The live question ----------
-  const QS = [
-    { where: 'Hiver, 2026', q: 'Why has our revenue history stopped moving?', fig: '0.04%', n: 0.04, dec: 2, suf: '%', line: '15 months had frozen. Now it matches billing to within 0.04% a day.', go: '#s-revenue' },
-    { where: 'HackerRank, 2025', q: 'Where are our new users coming from?', fig: '30% to 0', line: 'Almost a third of new users had no source. Now every one of them does.', go: '#s-signups' },
-    { where: 'HackerRank, 2025', q: 'How big is our audience, really?', fig: '3.5M', n: 3.5, dec: 1, suf: 'M', line: 'Active, out of 27.4M registered developers. About one in eight.', go: '#s-audience' },
-    { where: 'Hiver, 2026', q: 'Is reported revenue too high?', fig: '4.5%', n: 4.5, dec: 1, suf: '%', line: 'Duplicate records, found and removed at the source.', go: '#s-dupes' }
-  ];
-  const qEl = $('asked-q'), aEl = $('asked-a'), figEl = $('asked-fig'), lineEl = $('asked-line'), whereEl = $('asked-where'), goEl = $('asked-go');
-  const pager = [...document.querySelectorAll('#asked .pager button')];
-  let cur = 0, timers = [], paused = false, cycle = null;
-  const clear = () => { timers.forEach(clearTimeout); timers = []; };
-  const count = (x) => {
-    if (reduce || x.n == null) { figEl.textContent = x.fig; return; }
-    const t0 = performance.now(), dur = 900;
-    const step = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); figEl.textContent = (x.n * e).toFixed(x.dec) + x.suf; if (k < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  };
-  const show = (i) => {
-    clear(); cur = i; const x = QS[i];
-    pager.forEach((b, j) => b.setAttribute('aria-pressed', String(j === i)));
-    whereEl.textContent = x.where; goEl.setAttribute('href', x.go); lineEl.textContent = x.line;
-    if (reduce) { qEl.textContent = x.q; figEl.textContent = x.fig; aEl.classList.remove('is-hidden'); return; }
-    aEl.classList.add('is-hidden'); qEl.textContent = '';
-    [...x.q].forEach((ch, k) => timers.push(setTimeout(() => { qEl.textContent += ch; }, 28 * k)));
-    timers.push(setTimeout(() => { aEl.classList.remove('is-hidden'); count(x); }, 28 * x.q.length + 250));
-  };
-  const loop = () => { clearInterval(cycle); cycle = setInterval(() => { if (!paused && !document.hidden) show((cur + 1) % QS.length); }, 7000); };
-  pager.forEach((b) => b.addEventListener('click', () => { show(+b.dataset.i); loop(); }));
-  const asked = $('asked');
-  asked.addEventListener('pointerenter', () => { paused = true; });
-  asked.addEventListener('pointerleave', () => { paused = false; });
-  asked.addEventListener('focusin', () => { paused = true; });
-  asked.addEventListener('focusout', () => { paused = false; });
-  if (!reduce) loop();
-
-  // ---------- Dot field ----------
-  $('field').innerHTML = Array.from({ length: 274 }, (_, i) => '<i' + (i < 35 ? ' class="act"' : '') + ' style="--k:' + Math.min(i, 60) + '"></i>').join('');
-
-  // ---------- Story readouts by step ----------
-  const READ = {
-    's-signups': [['30%', 'with no known source'], ['30%', 'while the classification was rebuilt'], ['0%', 'with no known source']],
-    's-audience': [['27.4M', 'registered'], ['3.5M', 'active, about one in eight'], ['3.5M', 'active, cut by region and segment']],
-    's-dupes': [['104.5', 'reported'], ['+4.5', 'of it was duplicates'], ['100', 'the true figure']]
-  };
-  const setStep = (story, s) => {
-    story.classList.remove('is-s1', 'is-s2', 'is-s3'); story.classList.add('is-s' + s);
-    story.querySelectorAll('.step').forEach((st) => st.classList.toggle('is-on', +st.dataset.s === s));
-    const r = READ[story.id]; if (!r) return;
-    const read = story.querySelector('.read');
-    read.querySelector('b').textContent = r[s - 1][0]; read.querySelector('span').textContent = r[s - 1][1];
-  };
-  const stories = [...document.querySelectorAll('.story')];
-  stories.forEach((st) => setStep(st, reduce ? 3 : 1));
-  // The active step is the last one whose top has passed the reading line
-  const narrow = matchMedia('(max-width: 720px)');
-  const steps = stories.map((st) => [st, [...st.querySelectorAll('.step')]]);
-  const pickSteps = () => {
-    if (reduce) return;
-    const line = innerHeight * (narrow.matches ? 0.7 : 0.55);
-    steps.forEach(([st, list]) => {
-      let s = 1; list.forEach((el) => { if (el.getBoundingClientRect().top < line) s = +el.dataset.s; });
-      if (!st.classList.contains('is-s' + s)) setStep(st, s);
-    });
-  };
-
-  // ---------- Journey: scrolling moves the question ----------
-  const journey = $('journey'), route = $('route');
-  const stops = [...route.querySelectorAll('.stops li')];
-  const wide = matchMedia('(min-width: 1101px)');
-  const place = () => {
-    let p;
-    const r = route.getBoundingClientRect();
-    if (wide.matches) p = Math.min(1, Math.max(0, (innerHeight * 0.85 - r.top) / (innerHeight * 0.6)));
-    else p = Math.min(1, Math.max(0, (innerHeight * 0.6 - r.top) / r.height));
-    if (reduce) p = 1;
-    route.style.setProperty('--p', p.toFixed(3));
-    const lit = Math.min(stops.length - 1, Math.floor(p * stops.length));
-    stops.forEach((li, i) => li.classList.toggle('is-on', wide.matches && !reduce ? i === lit : i <= lit));
-    route.style.setProperty('--qx', wide.matches ? (lit * (route.clientWidth + 4) / stops.length) + 'px' : '0px');
-  };
-  let ticking = false;
-  addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { place(); pickSteps(); ticking = false; }); }, { passive: true });
-  addEventListener('resize', () => { place(); pickSteps(); });
-  place(); pickSteps();
-
-  // ---------- Entrances ----------
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
-  document.querySelectorAll('.rise, #strata').forEach((el) => io.observe(el));
-})();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/framework7@9.3.0/framework7-bundle.min.js" integrity="sha384-zCnPjN3x7L1QsOsfgn7k7Y3YXJXyCSVYFVyuYZtUFn0biZ5ZcM95eG00YS5NQVzG" crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
