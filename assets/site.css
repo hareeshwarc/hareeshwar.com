@@ -614,3 +614,195 @@ html.vt-next::view-transition-group(*) { animation-duration: 650ms; animation-ti
 .route-split b { display: block; font-size: 15px; }
 .route-bar { margin-top: 18px; height: 14px; border-radius: 7px; background: var(--viz-3); overflow: hidden; }
 .route-bar i { display: block; height: 100%; width: 70%; background: var(--viz-1); border-radius: 7px; }
+
+/* =====================================================================
+   v3: one screen at a time. Intro, a screen per story, snap scrolling,
+   a native bottom tab bar on phones, and a real contact screen.
+   ===================================================================== */
+:root { --nav-h: 48px; --sub-h: 0px; --tab-h: 0px; --screen: calc(100svh - var(--nav-h) - var(--sub-h) - var(--tab-h)); }
+html[data-look="android"] { --nav-h: 64px; }
+html[data-look="windows"] { --nav-h: 52px; }
+html.page-story { --sub-h: 52px; }
+html.snap-y { scroll-snap-type: y mandatory; scroll-padding-top: calc(var(--nav-h) + var(--sub-h)); }
+.snap { scroll-snap-align: start; scroll-snap-stop: always; }
+.lnav { top: var(--nav-h); }
+.anchor { scroll-margin-top: calc(var(--nav-h)); }
+
+/* Every snap screen fills the space between the bars and centres its content */
+.intro, .story, .snap.fill, .contact, .page-story .s-hero, .page-story .sec.snap { min-height: var(--screen); display: flex; flex-direction: column; justify-content: center; }
+.snap > .wrap { width: 100%; }
+.page-story .sec.snap { padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
+.page-story .s-hero { padding-top: 40px; padding-bottom: 40px; }
+.page-story .s-hero .big { margin-top: clamp(28px, 5vh, 64px); }
+
+/* Shared */
+.kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 15px; font-weight: 600; color: var(--ink-2); letter-spacing: -0.005em; }
+.chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 99px; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--link); font-size: 14px; font-weight: 600; }
+.count { font-variant-numeric: tabular-nums; }
+
+/* ---------- Intro: the whole first screen ---------- */
+.intro { position: relative; text-align: center; padding-top: 32px; padding-bottom: 96px; }
+.intro .kicker { justify-content: center; }
+.intro h1 { font-size: clamp(44px, 7.4vw, 108px); line-height: 1.02; letter-spacing: -0.035em; max-width: 15ch; margin: 22px auto 0; }
+.intro .lead { max-width: 36ch; margin: 26px auto 0; }
+.facts { display: flex; justify-content: center; gap: clamp(28px, 5vw, 72px); list-style: none; margin: clamp(32px, 5vh, 56px) 0 0; padding: 0; }
+.facts b { display: block; font-family: var(--font-display); font-size: clamp(40px, 4.4vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.facts span { display: block; margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.intro .ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: clamp(32px, 5vh, 48px); }
+.cue { position: absolute; left: 50%; bottom: 28px; width: 28px; height: 44px; margin-left: -14px; border-radius: 16px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ink) 35%, transparent); }
+.cue span { position: absolute; left: 50%; top: 9px; width: 4px; height: 8px; margin-left: -2px; border-radius: 2px; background: var(--ink-2); animation: cue 1.8s var(--ease) infinite; }
+@keyframes cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
+
+/* ---------- A screen per story ---------- */
+.story { background: var(--bg); padding-top: 40px; padding-bottom: 40px; }
+.story.dark { background: var(--bg-stage); color: var(--ink-stage); --ink: var(--ink-stage); --ink-2: var(--ink-stage-2); --link: var(--link-stage); --card: var(--card-stage); --line: #424245; --viz-1: var(--link-stage); --viz-3: #3a3a3c; }
+html[data-look="android"] .story.dark { background: #1a1b20; }
+.story-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 88px); align-items: center; }
+.story h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.05; letter-spacing: -0.03em; max-width: 15ch; margin-top: 18px; }
+.story .dek { margin-top: 16px; font-size: var(--t-lead); line-height: 1.35; color: var(--ink-2); font-weight: 500; max-width: 32ch; }
+.story .fig { margin-top: clamp(20px, 4vh, 36px); }
+.story .fig b { display: block; font-family: var(--font-display); font-size: clamp(56px, 6.6vw, 104px); font-weight: 600; letter-spacing: -0.04em; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.story .fig span { display: block; margin-top: 8px; font-size: 16px; color: var(--ink-2); font-weight: 500; }
+.story .txt > .btn { margin-top: clamp(20px, 4vh, 36px); }
+.story .art { display: block; height: min(54vh, 480px); padding: 36px 32px 0; border-radius: var(--radius-card); background: var(--bg-alt); overflow: hidden; }
+.story.dark .art { background: #1d1d1f; }
+html[data-look="android"] .story .art { background: var(--card-alt); }
+html[data-look="android"] .story.dark .art { background: #26272e; }
+html[data-look="windows"] .story .art { box-shadow: inset 0 0 0 1px var(--line); }
+.story .art svg { display: block; width: 100%; height: 100%; }
+.story .art path { vector-effect: non-scaling-stroke; }
+
+/* Position rail (desktop) */
+.rail { position: fixed; right: 22px; top: 50%; transform: translateY(-50%); z-index: 45; display: grid; gap: 10px; list-style: none; margin: 0; padding: 10px 6px; }
+.rail a { display: block; width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--ink) 25%, transparent); transition: transform 300ms var(--ease-out), background-color 300ms var(--ease); }
+.rail a[aria-current] { background: var(--accent); transform: scale(1.5); }
+.rail a:hover { background: var(--ink-2); }
+.rail.on-dark a { background: rgba(255, 255, 255, 0.35); }
+.rail.on-dark a[aria-current] { background: var(--link-stage); }
+@media (max-width: 1068px) { .rail { display: none; } }
+
+/* ---------- Contact screen ---------- */
+.contact { background: var(--bg-alt); padding-top: 32px; }
+.contact-in { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 24px; padding-bottom: 24px; }
+.contact .kicker { justify-content: center; }
+.contact h2 { font-size: var(--h-1); margin-top: 12px; }
+.contact .lead { max-width: 34ch; margin: 18px auto 0; }
+.contact .ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.contact .btn svg { width: 20px; height: 20px; }
+.mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 6px 6px 6px 16px; border-radius: 99px; background: var(--card); font-size: 16px; font-weight: 500; user-select: all; }
+.mail span { user-select: all; }
+.copy { border: 0; border-radius: 99px; padding: 6px 14px; font: 600 14px/1 var(--font); background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--link); cursor: pointer; user-select: none; }
+.contact .next { width: 100%; max-width: 880px; margin-bottom: clamp(40px, 7vh, 72px); text-align: left; }
+.contact .foot { background: transparent; padding: 20px 0 24px; }
+.foot .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-2); }
+.nav-cta { padding: 5px 12px; border-radius: var(--radius-btn); background: var(--accent); color: #fff !important; opacity: 1 !important; }
+html[data-mode="dark"]:not([data-look="apple"]) .nav-cta { color: #000 !important; }
+
+/* Sections that fill a screen but can run longer */
+.snap.fill { padding-top: clamp(48px, 7vh, 96px); padding-bottom: clamp(48px, 7vh, 96px); }
+
+/* Tab bar: phones only */
+.tabbar { display: none; }
+
+/* Quicker, lighter entrances so each snap lands cleanly */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-rise] { transform: translateY(16px); transition-duration: 600ms; transition-delay: calc(var(--d, 0) * 70ms); }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 734px) {
+  :root { --tab-h: calc(62px + env(safe-area-inset-bottom, 0px)); }
+  html[data-look="android"] { --nav-h: 56px; --tab-h: calc(80px + env(safe-area-inset-bottom, 0px)); }
+  html.page-story { --sub-h: 48px; }
+  .lnav { height: 48px; }
+  body { padding-bottom: var(--tab-h); }
+  /* Solid bars: blur is the main cause of jank on Android */
+  .gnav, .lnav { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg); }
+  html[data-look="android"] .gnav { height: 56px; }
+  .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; height: var(--tab-h); padding-bottom: env(safe-area-inset-bottom, 0px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--bg); border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
+  .tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--ink-2); font-size: 11px; font-weight: 600; -webkit-tap-highlight-color: transparent; }
+  .tabbar a:hover { text-decoration: none; }
+  .tabbar .ic { display: grid; place-items: center; width: 44px; height: 28px; border-radius: 14px; transition: background-color 250ms var(--ease), color 250ms var(--ease); }
+  .tabbar svg { width: 24px; height: 24px; }
+  .tabbar a[aria-current] { color: var(--link); }
+  html[data-look="android"] .tabbar { border-top: 0; background: var(--nav-bg); }
+  html[data-look="android"] .tabbar a { gap: 4px; font-size: 12px; font-weight: 500; color: var(--ink); }
+  html[data-look="android"] .tabbar .ic { width: 64px; height: 32px; border-radius: 16px; }
+  html[data-look="android"] .tabbar a[aria-current] .ic { background: color-mix(in srgb, var(--accent) 24%, transparent); }
+  html[data-look="android"] .tabbar a[aria-current] { color: var(--ink); font-weight: 700; }
+
+  .intro { padding-top: 16px; padding-bottom: 72px; }
+  .intro h1 { font-size: clamp(34px, 10.2vw, 46px); margin-top: 16px; }
+  .intro .kicker { font-size: 13px; }
+  .intro .lead { font-size: 18px; margin-top: 18px; }
+  .facts { gap: 24px; margin-top: 26px; }
+  .facts b { font-size: 34px; }
+  .facts span { font-size: 12px; }
+  .intro .ctas { margin-top: 26px; }
+  .intro .ctas .btn { flex: 1 1 140px; }
+  .cue { bottom: 18px; }
+
+  .story { padding-top: 18px; padding-bottom: 18px; }
+  .story-in { display: flex; flex-direction: column; gap: 0; height: calc(var(--screen) - 36px); }
+  .story .txt { display: contents; }
+  .story .kicker { order: 1; font-size: 13px; }
+  .story h2 { order: 2; font-size: clamp(27px, 7.6vw, 34px); margin-top: 12px; }
+  .story .dek { order: 3; font-size: 16px; margin-top: 10px; }
+  .story .art { order: 4; flex: 1 1 auto; min-height: 96px; height: auto; margin-top: 18px; padding: 18px 16px 0; border-radius: calc(var(--radius-card) * 0.8); }
+  .story .fig { order: 5; margin-top: 16px; display: flex; align-items: baseline; gap: 12px; }
+  .story .fig b { font-size: clamp(40px, 12vw, 56px); flex-shrink: 0; }
+  .story .fig span { margin-top: 0; font-size: 14px; }
+  .story .txt > .btn { order: 6; margin-top: 16px; width: 100%; }
+
+  .contact h2 { font-size: clamp(32px, 9vw, 40px); }
+  .contact .ctas .btn { flex: 1 1 100%; }
+  .mail { font-size: 15px; }
+  .contact .next { margin-bottom: 32px; }
+  .foot .row { flex-direction: column; gap: 10px; }
+
+  .scrolly .viz { top: calc(var(--nav-h) + var(--sub-h)); }
+  .page-story .sec.snap, .snap.fill { padding-top: 32px; padding-bottom: 32px; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.intro h1 { font-size: clamp(40px, min(6.4vw, 8.2vh), 100px); max-width: 20ch; }
+.intro .facts { margin-top: clamp(24px, 4vh, 48px); }
+#writing .post { background: var(--bg-alt); }
+html[data-look="android"] #writing .post { background: var(--card-alt); }
+@media (max-width: 734px) {
+  .story-in { align-items: stretch; }
+  .story h2, .story .dek { max-width: none; }
+  .story .kicker { justify-content: flex-start; }
+  .story .fig b { text-align: left; }
+  .cue { display: none; }
+  .intro { padding-bottom: 24px; }
+}
+html[data-mode="dark"] .gnav .brand img { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2); }
+html[data-look="apple"][data-mode="dark"] .story.dark { background: #000; }
+html[data-look="apple"][data-mode="dark"] .story:not(.dark) .art { background: #1d1d1f; }
+
+/* Story-screen pictures */
+.story .art:has(.pic) { display: grid; place-items: center; padding: clamp(20px, 3vw, 36px); }
+.pic { width: 100%; height: 100%; max-height: 100%; overflow: visible; }
+.pic text { font-family: var(--font); font-size: 13px; fill: var(--ink-2); }
+.pic .t1 { fill: var(--ink); font-weight: 600; font-size: 14px; }
+.pic .t2 { fill: var(--ink-2); }
+.pic .tw { fill: #fff; }
+.pic .tl { fill: var(--link); font-weight: 600; font-size: 12px; }
+.pic .thl { fill: var(--viz-hl); }
+.pic .fsurf { fill: color-mix(in srgb, var(--ink) 7%, transparent); }
+.pic .fbg { fill: color-mix(in srgb, var(--ink) 5%, transparent); }
+.pic .fw { fill: #fff; }
+.pic .kw { stroke: #fff; }
+.pic .dash { stroke-dasharray: 6 6; }
+.pic .fn { fill: color-mix(in srgb, var(--viz-1) 16%, transparent); }
+html[data-mode="dark"]:not([data-look="apple"]) .pic .tw, html[data-mode="dark"]:not([data-look="apple"]) .story.dark .pic .tw { fill: #0b0c10; }
+html[data-look="android"] .story.dark .pic .tw, html[data-look="windows"] .story.dark .pic .tw { fill: #0b0c10; }
+html[data-look="android"] .story.dark .pic .fw, html[data-look="windows"] .story.dark .pic .fw { fill: #0b0c10; }
+html[data-look="android"] .story.dark .pic .kw, html[data-look="windows"] .story.dark .pic .kw { stroke: #0b0c10; }
+@media (max-width: 734px) { .story .art:has(.pic) { padding: 14px; } }
+.gnav .brand .mark { width: 24px; height: 24px; flex-shrink: 0; color: var(--nav-ink); }
+.mark-dot { fill: var(--accent); }
+html[data-look="android"] .gnav .brand .mark { width: 26px; height: 26px; }
+/* Next story: clear the old page quickly, then raise the new one so the two never muddle */
+html.vt-next::view-transition-old(root) { animation: vt-lift 260ms cubic-bezier(0.55, 0, 0.75, 0.2) both; }
+html.vt-next::view-transition-new(root) { animation: vt-rise 620ms cubic-bezier(0.22, 1, 0.36, 1) 180ms both; }

@@ -136,7 +136,7 @@
   /* ---------- Pointer: works with the system cursor, never replaces it (desktop only) ----------
      Cards catch a soft light where the cursor is. Buttons lean a few pixels toward it. */
   if (fine && !reduce) {
-    d.querySelectorAll('.tile, .next, .post, .files li').forEach(function (el) {
+    d.querySelectorAll('.story .art, .next, .post, .files li').forEach(function (el) {
       el.classList.add('spot');
       el.addEventListener('pointerenter', function () { el.classList.add('lit'); });
       el.addEventListener('pointerleave', function () { el.classList.remove('lit'); });
@@ -166,36 +166,68 @@
       if (lines.length) w.gsap.from(lines, { yPercent: 110, duration: 1.1, ease: 'power4.out', stagger: 0.09, delay: 0.1 });
     });
   }
-  if (!reduce && fine && w.Lenis) {
-    var lenis = new w.Lenis({ duration: 1.05, smoothWheel: true });
-    lenis.on('scroll', onScroll);
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
-  }
-
-  /* ---------- A live favicon: a heartbeat that flatlines when you leave the tab ---------- */
-  (function () {
-    var link = d.querySelector('link[rel="icon"][data-live]');
-    if (!link || reduce) return;
-    var cv = d.createElement('canvas'); cv.width = cv.height = 64;
-    var g = cv.getContext('2d'), t = 0, title = d.title, timer = null;
-    function draw(flat) {
-      g.clearRect(0, 0, 64, 64);
-      g.fillStyle = '#000'; g.beginPath(); g.roundRect ? g.roundRect(0, 0, 64, 64, 14) : g.rect(0, 0, 64, 64); g.fill();
-      g.strokeStyle = flat ? '#ff9f0a' : '#ffffff'; g.lineWidth = 5; g.lineJoin = 'round'; g.lineCap = 'round'; g.beginPath();
-      for (var x = 8; x <= 56; x += 2) {
-        var y = 34;
-        if (!flat) { var p = ((x + t) % 48) / 48; y = 34 - (p > 0.4 && p < 0.5 ? 20 * Math.sin((p - 0.4) / 0.1 * Math.PI) : 0) + (p > 0.5 && p < 0.56 ? 8 : 0); }
-        x === 8 ? g.moveTo(x, y) : g.lineTo(x, y);
-      }
-      g.stroke();
-      if (flat) { g.fillStyle = '#ff9f0a'; g.beginPath(); g.arc(56, 34, 5, 0, 7); g.fill(); }
-      link.href = cv.toDataURL('image/png');
-    }
-    function run() { clearInterval(timer); timer = setInterval(function () { t = (t + 4) % 48; draw(false); }, 120); }
-    d.addEventListener('visibilitychange', function () {
-      if (d.hidden) { clearInterval(timer); draw(true); d.title = 'This line went flat. Come back?'; }
-      else { d.title = title; run(); }
+  /* ---------- Copy the email address ---------- */
+  d.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var v = btn.getAttribute('data-copy'), done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      try { navigator.clipboard.writeText(v).then(done, function () { selectIt(); }); } catch (e) { selectIt(); }
+      function selectIt() { var s = btn.previousElementSibling, r = d.createRange(); r.selectNodeContents(s); var sel = w.getSelection(); sel.removeAllRanges(); sel.addRange(r); }
     });
-    run();
-  })();
+  });
+
+  /* ---------- Where am I: a dot rail on desktop, the active tab on phones ---------- */
+  var screens = [].slice.call(d.querySelectorAll('.snap[data-label], #contact'));
+  var rail = null;
+  if (root.classList.contains('page-home') && screens.length) {
+    rail = d.createElement('ol'); rail.className = 'rail'; rail.setAttribute('aria-label', 'Sections');
+    screens.forEach(function (sc) {
+      var li = d.createElement('li'), a = d.createElement('a');
+      a.href = '#' + sc.id; a.title = sc.getAttribute('data-label') || 'Contact';
+      a.setAttribute('aria-label', a.title); li.appendChild(a); rail.appendChild(li);
+    });
+    d.body.appendChild(rail);
+  }
+  var tabs = {}; d.querySelectorAll('.tabbar a[data-tab]').forEach(function (a) { tabs[a.getAttribute('data-tab')] = a; });
+  function setTab(k) { Object.keys(tabs).forEach(function (t) { if (t === k) tabs[t].setAttribute('aria-current', 'page'); else tabs[t].removeAttribute('aria-current'); }); }
+  var sio = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var sc = e.target, i = screens.indexOf(sc);
+      if (rail) {
+        rail.querySelectorAll('a').forEach(function (a, j) { if (j === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+        rail.classList.toggle('on-dark', sc.classList.contains('dark') || sc.classList.contains('stage'));
+      }
+      if (sc.id === 'contact') setTab('contact');
+      else if (sc.id === 'writing') setTab('writing');
+      else if (sc.id === 'top') setTab('home');
+      else setTab('stories');
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  screens.forEach(function (sc) { sio.observe(sc); });
+  /* ---------- One wheel gesture = one screen (desktop) ----------
+     Phones get this from CSS scroll-snap with scroll-snap-stop. A mouse wheel or trackpad needs help:
+     inside a screen taller than the window we let the page scroll normally, at its edges we jump a whole screen. */
+  if (root.classList.contains('snap-y') && fine) {
+    var snaps = [].slice.call(d.querySelectorAll('.snap')), lockUntil = 0, lastWheel = 0;
+    var pad = function () { return parseFloat(getComputedStyle(root).scrollPaddingTop) || 0; };
+    w.addEventListener('wheel', function (ev) {
+      if (ev.ctrlKey || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+      if (ev.target.closest && ev.target.closest('input, textarea, select, .files')) return;
+      var now = Date.now(), p = pad(), vh = w.innerHeight, dir = ev.deltaY > 0 ? 1 : -1;
+      if (now < lockUntil) { ev.preventDefault(); if (now - lastWheel < 140) lockUntil = Math.max(lockUntil, now + 160); lastWheel = now; return; }
+      lastWheel = now;
+      var i = -1;
+      for (var k = 0; k < snaps.length; k++) { var r = snaps[k].getBoundingClientRect(); if (r.top <= p + 6 && r.bottom > p + 6) { i = k; break; } }
+      if (i < 0) return;
+      var rc = snaps[i].getBoundingClientRect();
+      if (dir > 0 && rc.bottom > vh + 4) return;      // more of this screen below: scroll normally
+      if (dir < 0 && rc.top < p - 4) return;           // more of this screen above: scroll normally
+      var j = i + dir; if (j < 0 || j >= snaps.length) return;
+      ev.preventDefault();
+      var t = snaps[j], tr = t.getBoundingClientRect(), y = w.scrollY + tr.top - p;
+      if (dir < 0 && tr.height > vh - p) y = w.scrollY + tr.bottom - vh;   // coming back up into a long screen: land on its end
+      w.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+      lockUntil = now + (reduce ? 200 : 750);
+    }, { passive: false });
+  }
 })();
