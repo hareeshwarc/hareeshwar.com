@@ -1,26 +1,37 @@
 # hareeshwar.com
 
-Static site built on Framework7 9.3.0, loaded from jsDelivr with the version pinned and integrity hashes checked. No build step.
+Static multi-page site. Plain HTML, CSS and JS with no build step on the server.
+
+## Pages
+
+- `index.html`: home, story tiles, path, writing
+- `stories/*.html`: one deep dive per story
+- `assets/site.css`, `assets/site.js`: all styling and interactions
+- `assets/icon.svg`, `apple-touch-icon.png`, `icon-512.png`, `og.png`: icons and share image
+
+## Looks
 
 | Device | Look |
 |---|---|
-| iPhone, iPad, Mac | Framework7 iOS 26 theme (glass tab bar, large titles, App Store style cards) |
-| Android | Framework7 Material You theme (vibrant dark scheme) |
-| Windows | Material base restyled as Fluent (Segoe UI Variable, 4/8px corners, accent pill sidebar) |
+| iPhone, iPad, Mac | Apple style |
+| Android | Material 3 |
+| Windows | Fluent |
 
-Phones get a bottom tab bar. Screens 1024px and wider get a sidebar instead.
+Preview any look with `?look=apple`, `?look=android` or `?look=windows`.
+Light and dark follow the system until the toggle is used, then the choice is remembered.
 
-## Preview any look on one machine
-Add `?look=ios`, `?look=android` or `?look=windows` to the URL.
+## Libraries
+
+GSAP 3.15.0 and Lenis 1.3.27 from jsDelivr, version pinned with SRI hashes. The site works without them.
 
 ## Run locally
-    python3 -m http.server 8000
+
+```
+python3 -m http.server 8000
+```
+
 Then open http://localhost:8000
 
-## Deploy (GitHub Pages)
-Copy everything here into the root of the Pages repo, commit, push. `CNAME` keeps the custom domain, `.nojekyll` stops Jekyll from touching the files.
+## Deploy
 
-## Where to edit
-- Content: `index.html` (each tab is a `view` block, pushed pages are `<template>`s)
-- Platform styling: `css/app.css` (`.look-ios`, `.look-android`, `.look-windows`)
-- Platform detection and animations: inline script in `<head>` and `js/app.js`
+GitHub Pages from `main`. `CNAME` keeps the custom domain.
