@@ -76,10 +76,12 @@
     return { el: s, viz: s.querySelector('.viz'), steps: [].slice.call(s.querySelectorAll('.step')), cur: 0 };
   });
   function pickSteps() {
-    var line = w.innerHeight * (w.innerWidth <= 734 ? 0.78 : 0.6);
+    var phone = w.innerWidth <= 734, line = w.innerHeight * 0.6, tb = phone ? d.querySelector('.tabbar') : null, bottom = w.innerHeight - (tb ? tb.offsetHeight : 0);
     scrollies.forEach(function (s) {
       var n = 0;
-      s.steps.forEach(function (st, i) { if (st.getBoundingClientRect().top < line) n = i + 1; });
+      /* Phones: the picture is pinned at the top, so a step counts once its text is well into the space below the picture */
+      if (phone) { var vb = Math.max(0, Math.min(bottom - 60, s.viz.getBoundingClientRect().bottom)); line = vb + (bottom - vb) * 0.62; }
+      s.steps.forEach(function (st, i) { var t = phone ? (st.firstElementChild || st) : st; if (t.getBoundingClientRect().top < line) n = i + 1; });
       if (reduce && n === 0 && s.el.getBoundingClientRect().top < w.innerHeight) n = s.steps.length;
       if (n === 0) n = 1;
       if (n === s.cur) return;

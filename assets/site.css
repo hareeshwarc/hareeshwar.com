@@ -102,7 +102,7 @@ html[data-look="android"] {
 html[data-look="android"][data-mode="dark"] {
   --bg: #121318;
   --bg-alt: #1a1b20;
-  --bg-stage: #000000;
+  --bg-stage: #0c0d11;
   --ink: #e3e2e9;
   --ink-2: #c4c6d0;
   --line: #44464f;
@@ -874,3 +874,14 @@ html[data-mode="dark"] { color-scheme: dark; }
   .intro .lead { margin-top: 8px; }
 }
 html:not([data-look="apple"]) .sec.stage .layer.top, html:not([data-look="apple"]) .sec.stage .layer.top span, html:not([data-look="apple"]) .sec.stage .layer.top span strong { color: #0b0c10; }
+
+/* v4.1: phone scrolly chapters. The picture sits under the bars, each step's text
+   arrives just below it and lights up there, one step at a time. */
+@media (max-width: 734px) {
+  .scrolly .viz { top: calc(var(--nav-h) + var(--sub-h)); padding-top: 12px; padding-bottom: 14px; }
+  .scrolly .steps { padding: 2svh 0 26svh; }
+  .scrolly .step, .scrolly .step:first-child { min-height: 46svh; align-items: center; padding: 0; }
+  .scrolly .step p { font-size: 19px; }
+  .scrolly .cells { gap: 3px; }
+  .scrolly .cells i { height: 26px; border-radius: 4px; }
+}
