@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff">
 <script>(function(){var d=document.documentElement,q=new URLSearchParams(location.search).get('look'),s=null;
 try{if(q)sessionStorage.setItem('look',q);s=sessionStorage.getItem('look')}catch(e){}
 var ua=navigator.userAgent,ipad=navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1,look='android';
@@ -10,7 +12,7 @@ if(/iPhone|iPad|iPod|Macintosh|Mac OS X/.test(ua)||ipad)look='apple';else if(/Wi
 if(s==='apple'||s==='android'||s==='windows')look=s;d.setAttribute('data-look',look);
 var W=function(k){var m=new RegExp('(?:^|;)'+k+'=([a-z]+)').exec(window.name||'');return m?m[1]:null};
 var t=null;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t=W('theme');
-if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';d.setAttribute('data-mode',t);
+if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';var B={apple:['#ffffff','#000000'],android:['#fdfbff','#121318'],windows:['#fafafa','#202020']};var M=function(m){d.setAttribute('data-mode',m);d.style.colorScheme=m;var c=document.querySelector('meta[name="theme-color"]');if(c)c.setAttribute('content',B[d.getAttribute('data-look')][m==='dark'?1:0])};M(t);addEventListener('pageshow',function(){var x=null;try{x=localStorage.getItem('theme')}catch(e){}if(x!=='light'&&x!=='dark')x=W('theme');if((x==='light'||x==='dark')&&x!==d.getAttribute('data-mode'))M(x)});addEventListener('storage',function(ev){if(ev.key==='theme'&&(ev.newValue==='light'||ev.newValue==='dark'))M(ev.newValue)});
 var n=null;try{n=sessionStorage.getItem('nav');sessionStorage.removeItem('nav')}catch(e){}if(location.hash==='#top')n='next';if(!n)n=W('nav');try{window.name=(window.name||'').replace(/(^|;)nav=[a-z]+/,'')}catch(e){}
 var vt=n==='next';if(vt){d.classList.add('vt-next');try{history.scrollRestoration='manual'}catch(e){}}
 var top=function(){if(vt)scrollTo(0,0)},done=function(){d.classList.remove('vt-next')};
@@ -19,7 +21,6 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <title>Hareeshwar Channapragada, product analyst</title>
 <meta name="description" content="Deep dives into the analytics work of Hareeshwar Channapragada: data trust, one BI platform, AI analytics agents, pricing engines and more.">
 <link rel="canonical" href="https://hareeshwar.com/">
-<meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hareeshwar Channapragada">
 <meta property="og:url" content="https://hareeshwar.com/">
