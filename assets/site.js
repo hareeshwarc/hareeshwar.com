@@ -12,6 +12,7 @@
   /* ---------- Theme toggle ---------- */
   function setTheme(t, store) {
     root.setAttribute('data-mode', t);
+    root.style.colorScheme = t;
     var meta = d.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--bg').trim() || (t === 'dark' ? '#000000' : '#ffffff'));
     if (store) { try { localStorage.setItem('theme', t); } catch (e) {} wn('theme', t); }
@@ -38,8 +39,10 @@
   /* ---------- Entrances ---------- */
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); start(e.target); } });
-  }, { rootMargin: '0px 0px -12% 0px' });
+  }, { rootMargin: '0px 0px -6% 0px' });
   d.querySelectorAll('[data-rise], .panel, [data-count], .hbars').forEach(function (el) { io.observe(el); });
+  /* On a snap screen, everything on it shows as soon as the screen lands, even what sits behind the tab bar */
+  function reveal(sc) { sc.querySelectorAll('[data-rise]:not(.is-in), .panel:not(.is-in), [data-count]:not(.is-in), .hbars:not(.is-in)').forEach(function (el) { el.classList.add('is-in'); io.unobserve(el); start(el); }); }
 
   /* SVG line lengths for draw-in */
   d.querySelectorAll('.draw').forEach(function (p) { try { p.style.setProperty('--len', Math.ceil(p.getTotalLength()) + 1); } catch (e) {} });
@@ -193,6 +196,7 @@
     es.forEach(function (e) {
       if (!e.isIntersecting) return;
       var sc = e.target, i = screens.indexOf(sc);
+      reveal(sc);
       if (rail) {
         rail.querySelectorAll('a').forEach(function (a, j) { if (j === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
         rail.classList.toggle('on-dark', sc.classList.contains('dark') || sc.classList.contains('stage'));
@@ -204,6 +208,16 @@
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   screens.forEach(function (sc) { sio.observe(sc); });
+  /* ---------- Touch: a screen taller than the window must never trap the scroll ----------
+     Mandatory snapping only works cleanly when each screen fits. Any screen that does not fit
+     (a short phone, big system font) keeps its snap point but lets the finger pass through it. */
+  if (!fine) {
+    var fit = function () {
+      var avail = w.innerHeight - (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) + 2;
+      d.querySelectorAll('.snap').forEach(function (sc) { sc.classList.toggle('tall', sc.offsetHeight > avail); });
+    };
+    fit(); w.addEventListener('resize', fit); w.addEventListener('load', fit);
+  }
   /* ---------- One wheel gesture = one screen (desktop) ----------
      Phones get this from CSS scroll-snap with scroll-snap-stop. A mouse wheel or trackpad needs help:
      inside a screen taller than the window we let the page scroll normally, at its edges we jump a whole screen. */
