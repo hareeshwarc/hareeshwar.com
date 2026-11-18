@@ -926,3 +926,42 @@ html:not([data-look="apple"]) .sec.stage .layer.top, html:not([data-look="apple"
   .climb .what small { font-size: 11.5px; }
   .page-home #path-h { font-size: 24px; }
 }
+
+/* v4.3: What each place added, built as a tower. The foundation lands first, each place drops onto
+   the one below it, then a light runs from the bottom to the top: every layer still feeds the next. */
+.tower { position: relative; list-style: none; margin: clamp(28px, 5vh, 44px) auto 0; padding: 0; max-width: 920px; display: flex; flex-direction: column; gap: 6px; }
+.tower li { position: relative; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: center; gap: 6px 28px; padding: 16px 24px; border-radius: 12px; background: color-mix(in srgb, var(--link) var(--mix), var(--card)); color: var(--ink); overflow: hidden; }
+.tower b { font-family: var(--font-display); font-size: clamp(18px, 1.8vw, 23px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; }
+.tower span { font-size: 15px; line-height: 1.38; color: var(--ink-2); }
+.tower span strong { display: block; color: var(--ink); font-weight: 600; }
+.tower span em { font-style: normal; }
+.tower li.top { padding-top: 22px; padding-bottom: 22px; }
+.tower li.top b { font-size: clamp(22px, 2.3vw, 30px); }
+.tower li.top, .tower li.top span, .tower li.top strong { color: #0b0c10; }
+html[data-look="apple"] .tower li.top, html[data-look="apple"] .tower li.top span, html[data-look="apple"] .tower li.top strong { color: #fff; }
+.tower-more { margin-top: 22px; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .tower[data-rise] { opacity: 1; transform: none; }
+  .js .tower li { opacity: 0; transform: translateY(-70px); }
+  .js .tower.is-in li { animation: tower-land 640ms cubic-bezier(0.3, 0.7, 0.2, 1) both; animation-delay: calc(var(--i) * 300ms + 120ms); }
+  .js .tower.is-in li::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 2px var(--link); animation: tower-seat 700ms ease-out both; animation-delay: calc(var(--i) * 300ms + 560ms); }
+  /* once built, a light runs up through every layer, foundation first */
+  .js .tower.is-in li::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: color-mix(in srgb, #fff 16%, transparent); opacity: 0; animation: tower-run 520ms ease-out both; animation-delay: calc(6 * 300ms + 300ms + var(--i) * 110ms); }
+}
+@keyframes tower-land { 0% { opacity: 0; transform: translateY(-70px); } 55% { opacity: 1; transform: translateY(3px); } 78% { transform: translateY(-1px); } 100% { opacity: 1; transform: none; } }
+@keyframes tower-seat { 0% { opacity: 0.9; } 100% { opacity: 0; } }
+@keyframes tower-run { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 0; } }
+@media (max-width: 734px) {
+  .tower { margin-top: 18px; gap: 5px; }
+  .tower li { grid-template-columns: 1fr; gap: 2px; padding: 11px 16px; border-radius: 10px; }
+  .tower li.top { padding-top: 14px; padding-bottom: 14px; }
+  .tower b, .tower li.top b { font-size: 17px; }
+  .tower li.top b { font-size: 19px; }
+  .tower span { font-size: 12.5px; }
+  .tower span em { display: none; }
+  .tower-more { margin-top: 14px; font-size: 15px; }
+}
+@media (max-width: 734px) and (max-height: 700px) {
+  .tower li { padding-top: 8px; padding-bottom: 8px; }
+  #path .ch-head .lead { display: none; }
+}
