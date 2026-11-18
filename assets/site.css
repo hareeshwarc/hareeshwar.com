@@ -885,3 +885,44 @@ html:not([data-look="apple"]) .sec.stage .layer.top, html:not([data-look="apple"
   .scrolly .cells { gap: 3px; }
   .scrolly .cells i { height: 26px; border-radius: 4px; }
 }
+
+/* v4.2: What each place added, as a climb. Each row carries every layer below it and adds one. */
+.climb { list-style: none; margin: clamp(28px, 5vh, 48px) auto 0; padding: 0; max-width: 1040px; }
+.climb li { display: grid; grid-template-columns: calc(6 * 18px + 5 * 5px) minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: 28px; padding: 16px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); }
+.climb li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); }
+.climb .stack { display: flex; gap: 5px; }
+.climb .stack i { width: 18px; height: 18px; border-radius: 5px; background: color-mix(in srgb, var(--link) 26%, transparent); }
+.climb .stack i.new { background: var(--link); }
+.climb .what b { display: block; font-family: var(--font-display); font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; color: var(--ink); }
+.climb .what small { display: block; margin-top: 3px; font-size: 14px; font-weight: 600; color: var(--link); }
+.climb .did { font-size: 16px; line-height: 1.4; color: var(--ink-2); }
+.climb li:first-child .what b { font-size: clamp(22px, 2.2vw, 30px); }
+.climb-more { margin-top: 24px; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .climb .stack i.new { transform: scale(0.3); opacity: 0; transition: transform 600ms var(--ease-out), opacity 400ms var(--ease); transition-delay: calc(var(--d, 0) * 90ms + 250ms); }
+  .js .climb li.is-in .stack i.new { transform: none; opacity: 1; }
+}
+@media (max-width: 734px) {
+  .climb { margin-top: 18px; }
+  .climb li { grid-template-columns: calc(6 * 9px + 5 * 3px) minmax(0, 1fr); column-gap: 14px; padding: 10px 0; align-items: center; }
+  .climb .stack { gap: 3px; }
+  .climb .stack i { width: 9px; height: 9px; border-radius: 2.5px; }
+  .climb .did { display: none; }
+  .climb .what b, .climb li:first-child .what b { font-size: 18px; }
+  .climb .what small { font-size: 12.5px; margin-top: 1px; }
+  .climb-more { margin-top: 14px; font-size: 15px; }
+}
+@media (max-width: 734px) and (max-height: 700px) {
+  .climb li { padding: 7px 0; }
+  #path .ch-head .lead { display: none; }
+}
+
+/* Side-swipe rows start at the page margin, not the screen edge, and snap back to it */
+@media (max-width: 734px) {
+  .files, .page-home .writing { scroll-padding-inline: var(--pad); }
+}
+@media (max-width: 360px) {
+  .climb .what b, .climb li:first-child .what b { font-size: 16px; }
+  .climb .what small { font-size: 11.5px; }
+  .page-home #path-h { font-size: 24px; }
+}
