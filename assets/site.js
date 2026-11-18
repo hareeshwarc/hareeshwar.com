@@ -215,7 +215,7 @@
      (a short phone, big system font) keeps its snap point but lets the finger pass through it. */
   if (!fine) {
     var fit = function () {
-      var avail = w.innerHeight - (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) + 2;
+      var tb = d.querySelector('.tabbar'), avail = w.innerHeight - (parseFloat(getComputedStyle(root).scrollPaddingTop) || 0) - (tb ? tb.offsetHeight : 0) + 2;
       d.querySelectorAll('.snap').forEach(function (sc) { sc.classList.toggle('tall', sc.offsetHeight > avail); });
     };
     fit(); w.addEventListener('resize', fit); w.addEventListener('load', fit);

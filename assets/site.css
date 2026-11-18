@@ -965,3 +965,25 @@ html[data-look="apple"] .tower li.top, html[data-look="apple"] .tower li.top spa
   .tower li { padding-top: 8px; padding-bottom: 8px; }
   #path .ch-head .lead { display: none; }
 }
+/* v4.4: phones keep each layer's description: company and what it added share one short paragraph */
+@media (max-width: 734px) {
+  #path .ch-head .lead { display: none; }
+  .tower { margin-top: 14px; }
+  .tower li { padding: 8px 14px 9px; gap: 3px; }
+  .tower li.top { padding-top: 11px; padding-bottom: 11px; }
+  .tower b { font-size: 16px; }
+  .tower li.top b { font-size: 18px; }
+  .tower span { font-size: 12px; line-height: 1.32; }
+  .tower span strong { display: inline; }
+  .tower span strong .role { display: none; }
+  .tower span strong::after { content: " · "; font-weight: 400; }
+  .tower span em { display: inline; }
+}
+/* the tab bar covers the bottom of the screen on phones, so snapping should not count that space */
+@media (max-width: 734px) {
+  html.snap-y { scroll-padding-bottom: var(--tab-h); }
+}
+@media (max-width: 734px) and (max-height: 760px) {
+  #path.snap.fill { padding-top: 14px; padding-bottom: 12px; }
+  .tower-more { margin-top: 10px; font-size: 14px; }
+}
