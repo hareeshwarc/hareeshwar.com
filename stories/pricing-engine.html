@@ -18,13 +18,13 @@ var vt=n==='next';if(vt){d.classList.add('vt-next');try{history.scrollRestoratio
 var top=function(){if(vt)scrollTo(0,0)},done=function(){d.classList.remove('vt-next')};
 addEventListener('pageswap',function(ev){var v=ev.viewTransition;if(v){var z=function(){};v.ready.catch(z);v.finished.catch(z);v.updateCallbackDone&&v.updateCallbackDone.catch(z)}});addEventListener('pagereveal',function(ev){top();var v=ev.viewTransition;if(v){v.ready.catch(done);v.finished.then(done,done);v.updateCallbackDone&&v.updateCallbackDone.catch(done)}else done()});
 if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function(){top();setTimeout(done,900);if(location.hash==='#top'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})}})();</script>
-<title>The most expensive part of our pricing engine was a product decision | Hareeshwar Channapragada</title>
+<title>Same pricing product, far fewer servers | Hareeshwar Channapragada</title>
 <meta name="description" content="How a B2B pricing engine went from 10 always-on, high-RAM workers to 3, and what I’d change if I did it again.">
 <link rel="canonical" href="https://hareeshwar.com/stories/pricing-engine.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hareeshwar Channapragada">
 <meta property="og:url" content="https://hareeshwar.com/stories/pricing-engine.html">
-<meta property="og:title" content="The most expensive part of our pricing engine was a product decision | Hareeshwar Channapragada">
+<meta property="og:title" content="Same pricing product, far fewer servers | Hareeshwar Channapragada">
 <meta property="og:description" content="How a B2B pricing engine went from 10 always-on, high-RAM workers to 3, and what I’d change if I did it again.">
 <meta property="og:image" content="https://hareeshwar.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <link rel="stylesheet" href="/assets/site.css">
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
 <script defer src="/assets/site.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "The most expensive part of our pricing engine was a product decision", "description": "How a B2B pricing engine went from 10 always-on, high-RAM workers to 3, and what I\u2019d change if I did it again.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Impact Analytics", "url": "https://hareeshwar.com/stories/pricing-engine.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Same pricing product, far fewer servers", "description": "How a B2B pricing engine went from 10 always-on, high-RAM workers to 3, and what I\u2019d change if I did it again.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Impact Analytics", "url": "https://hareeshwar.com/stories/pricing-engine.html"}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -51,10 +51,10 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <div class="rt"><span class="hide-s" style="color:var(--ink-2)">Software Engineer · 2024</span><a class="pill" href="/stories/multi-level-optimization.html#top" data-next>Next story</a></div></div><span class="progress"></span></nav>
 <main id="main">
 <section class="s-hero snap" id="top"><div class="wrap">
-<h1 style="view-transition-name:t-pricing-engine">The most expensive part of our pricing engine was a product decision</h1>
+<h1 style="view-transition-name:t-pricing-engine">Same pricing product, far fewer servers</h1>
 <p class="co">Impact Analytics · 2024</p>
 <p class="lead dek">How a B2B pricing engine went from 10 always-on, high-RAM workers to 3, and what I’d change if I did it again.</p>
-<div class="big" data-rise><b style="font-size:clamp(64px,10vw,140px)">10 → 3</b><span>permanent high-RAM workers</span></div>
+<div class="big" data-rise><b style="font-size:clamp(64px,10vw,140px)">10 → 3</b><span>always-on high-memory servers</span></div>
 </div></section><section class="sec snap " aria-labelledby="c0"><div class="wrap"><div class="ch-head" data-rise><h2 id="c0">How a forecast used to run</h2></div>
 <div class="scrolly"><div class="steps"><div class="step"><p>I inherited a B2B pricing and inventory optimization tool while moving from business analysis into backend engineering. It did its job. It was also expensive to run.</p></div><div class="step"><p>For one discount forecast, the request went from the UI to the backend, to our BA layer, back to the backend and back to the UI. <strong>Four handoffs across two teams</strong>, and most of our failures happened right at those handoffs.</p></div></div><div class="viz"><div class="panel"><p class="p-title">How one forecast used to run</p><ol class="vflow compact"><li class="on1"><b>UI</b><span>A user asks for a discount forecast</span></li><li class="on1"><b>Backend</b><em>Handoff</em><span>Generates a CSV</span></li><li class="on1"><b>BA layer</b><em>Handoff</em><span>Runs the processing</span></li><li class="on1"><b>Backend</b><em>Handoff</em><span>Gets the results back</span></li><li class="on1"><b>UI</b><em>Handoff</em><span>Finally shows the forecast</span></li></ol><p class="vis-in at2" style="margin-top:18px;font-weight:600">Four handoffs, two teams, one forecast. Most failures happened at the handoffs.</p></div></div></div></div></section><section class="sec snap alt" aria-labelledby="c1"><div class="wrap"><div class="ch-head" data-rise><h2 id="c1">Predicting which tasks need a big worker</h2></div>
 <div class="scrolly flip"><div class="steps"><div class="step"><p>We couldn’t tell ahead of time which tasks would be heavy, so we treated every task as the worst case and kept 10 high-RAM workers running all the time.</p></div><div class="step"><p>Going through past runs, processing time mostly depended on things we already knew when a request came in: the CSV row count, the date range and the request volume. So I set a threshold. <strong>If a task was expected to cross 90% of a normal worker’s capacity, it went to a big worker.</strong></p></div><div class="step"><p>Around <strong>70% of tasks never needed a big worker</strong>, and there were zero failures after the change.</p></div></div><div class="viz"><div class="panel"><p class="p-title">The routing rule</p><ol class="vflow compact"><li class="on1"><b>Known at request time</b><span>CSV row count, date range, request volume</span></li><li class="on1"><b>Predicted memory</b><span>Will this task cross 90% of a normal worker?</span></li></ol><div class="route-split vis-in at2"><div class="big"><b>Big worker</b>Over 90%</div><div><b>Normal worker</b>Under 90%</div></div><div class="vis-in at3"><div class="route-bar"><i></i></div><p style="margin-top:10px;font-weight:600">About 70% of tasks never needed a big worker</p><p style="color:var(--ink-2);font-size:14px">And zero failures after the change</p></div></div></div></div></div></section><section class="sec snap " aria-labelledby="c2"><div class="wrap"><div class="ch-head center" data-rise style="text-align:center"><h2 id="c2">Removing the handoffs</h2><p class="lead">I’d worked on both sides by then, so I could change the flow end to end. We dropped the CSV step, the BA layer wrote JSON the UI could read directly, and the API moved to FastAPI with every call async. Users could start a forecast and carry on while Pub/Sub workers ran it in the background.</p></div>
@@ -71,7 +71,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <div><h4>What I'd build now</h4><div class="one-block"></div><p style="margin-top:10px;font-size:15px;color:var(--ink-2)">One forecast per department and time frame, stored once, read by everyone.</p></div>
 </div></div></div></div></div></section><section class="contact snap" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-in"><a class="next" href="/stories/multi-level-optimization.html#top" data-next data-rise>
-<div><small>Up next · Impact Analytics</small><h3 style="view-transition-name:t-multi-level-optimization">Pricing for more than sell-through</h3></div><span class="arrow" aria-hidden="true">→</span></a>
+<div><small>Up next · Impact Analytics</small><h3 style="view-transition-name:t-multi-level-optimization">Discount plans that protect margin</h3></div><span class="arrow" aria-hidden="true">→</span></a>
 <p class="kicker" data-rise>Contact</p>
 <h2 id="contact-h" data-rise style="--d:1">Want to talk shop?</h2>
 <p class="lead" data-rise style="--d:2">Analytics, data trust, AI in the data stack, or anything on this site. Email is the fastest way to reach me.</p>

@@ -18,13 +18,13 @@ var vt=n==='next';if(vt){d.classList.add('vt-next');try{history.scrollRestoratio
 var top=function(){if(vt)scrollTo(0,0)},done=function(){d.classList.remove('vt-next')};
 addEventListener('pageswap',function(ev){var v=ev.viewTransition;if(v){var z=function(){};v.ready.catch(z);v.finished.catch(z);v.updateCallbackDone&&v.updateCallbackDone.catch(z)}});addEventListener('pagereveal',function(ev){top();var v=ev.viewTransition;if(v){v.ready.catch(done);v.finished.then(done,done);v.updateCallbackDone&&v.updateCallbackDone.catch(done)}else done()});
 if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function(){top();setTimeout(done,900);if(location.hash==='#top'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})}})();</script>
-<title>One place for every number | Hareeshwar Channapragada</title>
+<title>One source of truth for every team | Hareeshwar Channapragada</title>
 <meta name="description" content="Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.">
 <link rel="canonical" href="https://hareeshwar.com/stories/one-bi-platform.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hareeshwar Channapragada">
 <meta property="og:url" content="https://hareeshwar.com/stories/one-bi-platform.html">
-<meta property="og:title" content="One place for every number | Hareeshwar Channapragada">
+<meta property="og:title" content="One source of truth for every team | Hareeshwar Channapragada">
 <meta property="og:description" content="Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.">
 <meta property="og:image" content="https://hareeshwar.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <link rel="stylesheet" href="/assets/site.css">
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
 <script defer src="/assets/site.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "One place for every number", "description": "Moving all of Hiver\u2019s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Hiver", "url": "https://hareeshwar.com/stories/one-bi-platform.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "One source of truth for every team", "description": "Moving all of Hiver\u2019s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Hiver", "url": "https://hareeshwar.com/stories/one-bi-platform.html"}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -51,7 +51,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <div class="rt"><span class="hide-s" style="color:var(--ink-2)">Senior Product Analyst · 2026</span><a class="pill" href="/stories/traces.html#top" data-next>Next story</a></div></div><span class="progress"></span></nav>
 <main id="main">
 <section class="s-hero snap" id="top"><div class="wrap">
-<h1 style="view-transition-name:t-one-bi-platform">One place for every number</h1>
+<h1 style="view-transition-name:t-one-bi-platform">One source of truth for every team</h1>
 <p class="co">Hiver · 2026</p>
 <p class="lead dek">Moving all of Hiver’s BI reporting onto Metabase, and paying for each question once a day instead of every time someone asks it.</p>
 <div class="big" data-rise><b>&gt;90%</b><span>lower query cost</span></div>
@@ -75,7 +75,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 </div></div></div></div></section><section class="sec snap alt" aria-labelledby="c3"><div class="wrap"><div class="ch-text flip"><div data-rise><h2 id="c3" style="font-size:var(--h-2)">What it looks like now</h2><div class="body" style="margin-top:22px"><p>Raw data sits in the S3 data lake. Glue and Athena read it once a day into Postgres, and Metabase reads from there.</p><p>Customer Success got their <strong>account health dashboard</strong> rebuilt on it, the one they use with clients. Leadership got the <strong>executive revenue dashboard</strong>: ARR, expansion and churn.</p><p>The tradeoff is freshness. Numbers are as fresh as the last refresh, once a day. For BI reporting, that’s the right call.</p></div></div>
 <div data-rise style="--d:1"><div class="panel" data-autostep="5" data-gap="700"><p class="p-title">Where the numbers live now</p><ol class="vflow"><li class="on1"><b>S3 data lake</b><span>Raw data from the product, billing and CRM</span></li><li class="on2"><b>Glue + Athena</b><em>Daily</em><span>Scanned once a day, billed per TB scanned</span></li><li class="on3"><b>Postgres</b><span>Reporting tables, refreshed every day</span></li><li class="on4"><b>Metabase</b><span>Every dashboard in the company</span></li><li class="on5"><b>Product, CS, leadership</b><span>Account health, executive revenue, adoption</span></li></ol></div></div></div></div></section><section class="contact snap" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-in"><a class="next" href="/stories/traces.html#top" data-next data-rise>
-<div><small>Up next · Hiver</small><h3 style="view-transition-name:t-traces">Ask the data in plain English</h3></div><span class="arrow" aria-hidden="true">→</span></a>
+<div><small>Up next · Hiver</small><h3 style="view-transition-name:t-traces">Ask your data in plain English</h3></div><span class="arrow" aria-hidden="true">→</span></a>
 <p class="kicker" data-rise>Contact</p>
 <h2 id="contact-h" data-rise style="--d:1">Want to talk shop?</h2>
 <p class="lead" data-rise style="--d:2">Analytics, data trust, AI in the data stack, or anything on this site. Email is the fastest way to reach me.</p>

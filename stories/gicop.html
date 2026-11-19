@@ -18,13 +18,13 @@ var vt=n==='next';if(vt){d.classList.add('vt-next');try{history.scrollRestoratio
 var top=function(){if(vt)scrollTo(0,0)},done=function(){d.classList.remove('vt-next')};
 addEventListener('pageswap',function(ev){var v=ev.viewTransition;if(v){var z=function(){};v.ready.catch(z);v.finished.catch(z);v.updateCallbackDone&&v.updateCallbackDone.catch(z)}});addEventListener('pagereveal',function(ev){top();var v=ev.viewTransition;if(v){v.ready.catch(done);v.finished.then(done,done);v.updateCallbackDone&&v.updateCallbackDone.catch(done)}else done()});
 if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function(){top();setTimeout(done,900);if(location.hash==='#top'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})}})();</script>
-<title>Regulatory reporting an insurer could stand behind | Hareeshwar Channapragada</title>
+<title>Compliance reports a regulator could trust | Hareeshwar Channapragada</title>
 <meta name="description" content="A 3-layer ETL for General Insurance Code of Practice reporting on vulnerable customers. It earned me a Spot Award.">
 <link rel="canonical" href="https://hareeshwar.com/stories/gicop.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Hareeshwar Channapragada">
 <meta property="og:url" content="https://hareeshwar.com/stories/gicop.html">
-<meta property="og:title" content="Regulatory reporting an insurer could stand behind | Hareeshwar Channapragada">
+<meta property="og:title" content="Compliance reports a regulator could trust | Hareeshwar Channapragada">
 <meta property="og:description" content="A 3-layer ETL for General Insurance Code of Practice reporting on vulnerable customers. It earned me a Spot Award.">
 <meta property="og:image" content="https://hareeshwar.com/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <link rel="stylesheet" href="/assets/site.css">
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous"></script>
 <script defer src="/assets/site.js"></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Regulatory reporting an insurer could stand behind", "description": "A 3-layer ETL for General Insurance Code of Practice reporting on vulnerable customers. It earned me a Spot Award.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Mu Sigma", "url": "https://hareeshwar.com/stories/gicop.html"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Compliance reports a regulator could trust", "description": "A 3-layer ETL for General Insurance Code of Practice reporting on vulnerable customers. It earned me a Spot Award.", "author": {"@type": "Person", "name": "Hareeshwar Channapragada", "url": "https://hareeshwar.com/"}, "about": "Mu Sigma", "url": "https://hareeshwar.com/stories/gicop.html"}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -51,10 +51,10 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <div class="rt"><span class="hide-s" style="color:var(--ink-2)">Data Scientist · 2021</span><a class="pill" href="/stories/fraud-detection.html#top" data-next>Next story</a></div></div><span class="progress"></span></nav>
 <main id="main">
 <section class="s-hero snap" id="top"><div class="wrap">
-<h1 style="view-transition-name:t-gicop">Regulatory reporting an insurer could stand behind</h1>
+<h1 style="view-transition-name:t-gicop">Compliance reports a regulator could trust</h1>
 <p class="co">Mu Sigma · 2021</p>
 <p class="lead dek">A 3-layer ETL for General Insurance Code of Practice reporting on vulnerable customers. It earned me a Spot Award.</p>
-<div class="big" data-rise><b data-count="100" data-dec="0" data-pre="" data-suf="%">100%</b><span>consistency in the data</span></div>
+<div class="big" data-rise><b data-count="100" data-dec="0" data-pre="" data-suf="%">100%</b><span>consistent data across every report</span></div>
 </div></section><section class="sec snap " aria-labelledby="c0"><div class="wrap stack-center" data-rise><h2 id="c0" style="font-size:var(--h-2)">What the reporting had to show</h2><div class="body" style="margin-top:26px"><p>The insurer had to report on how it protects vulnerable customers under the <strong>General Insurance Code of Practice</strong> (GICOP).</p><p>The data for that lived all over the place: claims in one system, policies in another, and more besides. None of it was built to be reported together.</p></div></div></section><section class="sec snap alt" aria-labelledby="c1"><div class="wrap"><div class="ch-head" data-rise><h2 id="c1">Three layers</h2></div>
 <div class="scrolly"><div class="steps"><div class="step"><p>The <strong>conform layer</strong> brought every source, claims data, policy data and the rest, into one platform.</p></div><div class="step"><p>The <strong>facts and dimensions layer</strong> turned it into a star schema. PII got masked here. Each entity had its dimensions, and the fact table held the full join.</p></div><div class="step"><p>The <strong>reporting layer</strong> turned the IDs in the fact tables back into information the business could read, ready for executive dashboards in Tableau.</p></div></div><div class="viz"><div class="panel"><p class="p-title">Three layers, from raw systems to a report</p><ol class="vflow"><li class="on1"><b>Sources</b><span>Claims data, policy data and the rest, each from its own system</span></li><li class="on1"><b>Conform layer</b><span>Everything brought into one platform</span></li><li class="on2"><b>Facts and dimensions</b><span>A star schema. PII masked here. Dimensions per entity, the fact holds the join</span></li><li class="on3"><b>Reporting layer</b><span>IDs turned back into information the business can read</span></li><li class="on3"><b>Executive Tableau dashboards</b><span>Vulnerable-customer reporting the insurer could stand behind</span></li></ol></div></div></div></div></section><section class="sec snap stage" aria-labelledby="c2"><div class="wrap"><div class="ch-text flip"><div data-rise><h2 id="c2" style="font-size:var(--h-2)">Why it earned a Spot Award</h2><div class="body" style="margin-top:22px"><p>The award came down to <strong>smooth execution and 100% consistency in the data</strong>. For regulatory reporting, anything less means someone has to explain a number to a regulator.</p><p>I drove a major section of the project to completion, and I automated the data processing and validation along the way so the checks ran every time, by themselves.</p></div></div>
 <div data-rise style="--d:1"><div class="panel"><p class="p-title">The middle layer, a star schema</p><svg viewBox="0 0 460 300" role="img" aria-label="A star schema: a central fact table joined to customer, policy, claim and date dimensions">
@@ -66,7 +66,7 @@ if(vt){addEventListener('DOMContentLoaded',top);addEventListener('load',function
 <g><rect x="300" y="215" width="140" height="50" rx="12" class="fn"/><text x="370" y="245" text-anchor="middle" class="t-strong">Date</text></g>
 </svg><p class="p-note">Dimension names are examples.</p></div></div></div></div></section><section class="contact snap" id="contact" aria-labelledby="contact-h">
 <div class="wrap contact-in"><a class="next" href="/stories/fraud-detection.html#top" data-next data-rise>
-<div><small>Up next · Mu Sigma</small><h3 style="view-transition-name:t-fraud-detection">The claim that crossed a state line</h3></div><span class="arrow" aria-hidden="true">→</span></a>
+<div><small>Up next · Mu Sigma</small><h3 style="view-transition-name:t-fraud-detection">Catching fraud that crossed state lines</h3></div><span class="arrow" aria-hidden="true">→</span></a>
 <p class="kicker" data-rise>Contact</p>
 <h2 id="contact-h" data-rise style="--d:1">Want to talk shop?</h2>
 <p class="lead" data-rise style="--d:2">Analytics, data trust, AI in the data stack, or anything on this site. Email is the fastest way to reach me.</p>
